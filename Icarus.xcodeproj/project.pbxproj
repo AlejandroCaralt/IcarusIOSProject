@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22005181229EBEB300D3A672 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */; };
+		22005183229EBEF300D3A672 /* stores.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 22005182229EBEF300D3A672 /* stores.geojson */; };
+		22005185229EBEFC00D3A672 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005184229EBEFC00D3A672 /* Themes.swift */; };
+		221DC82F2278A31700D1A0C6 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DC82E2278A31700D1A0C6 /* UserController.swift */; };
+		223F3B2222AE4AF50020BFA0 /* CustomItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */; };
+		223F3B2422AE4ECD0020BFA0 /* RouteLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */; };
+		226B6DA922AFDDF2006A76A5 /* DashboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */; };
+		226B6DAB22AFDE49006A76A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DAA22AFDE49006A76A5 /* MainViewController.swift */; };
+		226B6DAD22AFDE56006A76A5 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DAC22AFDE56006A76A5 /* MainController.swift */; };
+		226B6DAF22AFDE67006A76A5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DAE22AFDE67006A76A5 /* ProfileViewController.swift */; };
+		226B6DB122AFDE74006A76A5 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DB022AFDE74006A76A5 /* ProfileController.swift */; };
 		2297B9F22264CB41003EFDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297B9F12264CB41003EFDF2 /* AppDelegate.swift */; };
 		2297B9F42264CB41003EFDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297B9F32264CB41003EFDF2 /* ViewController.swift */; };
 		2297B9F72264CB41003EFDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2297B9F52264CB41003EFDF2 /* Main.storyboard */; };
@@ -14,6 +25,22 @@
 		2297B9FC2264CB43003EFDF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2297B9FA2264CB43003EFDF2 /* LaunchScreen.storyboard */; };
 		2297BA072264CB43003EFDF2 /* IcarusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA062264CB43003EFDF2 /* IcarusTests.swift */; };
 		2297BA122264CB43003EFDF2 /* IcarusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA112264CB43003EFDF2 /* IcarusUITests.swift */; };
+		2297BA212264CBCA003EFDF2 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2297BA202264CBCA003EFDF2 /* LoginStoryboard.storyboard */; };
+		2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA222264CBFE003EFDF2 /* LoginViewController.swift */; };
+		2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA992268BA7A00D96631 /* FirebaseController.swift */; };
+		2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA9B2268C10700D96631 /* LoginControlller.swift */; };
+		22D00C0F226F134600541900 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00C0E226F134600541900 /* RegisterViewController.swift */; };
+		22D00C11226F135200541900 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00C10226F135200541900 /* RegisterController.swift */; };
+		22D74D182265D4FA00BE303F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D74D172265D4FA00BE303F /* GoogleService-Info.plist */; };
+		22F0AF1D2265FC2D001469CA /* bree-serif.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22F0AF1C2265FC2D001469CA /* bree-serif.regular.ttf */; };
+		22F0AF2222661712001469CA /* Cardo in Resources */ = {isa = PBXBuildFile; fileRef = 22F0AF2122661712001469CA /* Cardo */; };
+		22F0AF242266171C001469CA /* Abril_Fatface in Resources */ = {isa = PBXBuildFile; fileRef = 22F0AF232266171C001469CA /* Abril_Fatface */; };
+		22FD15AB226F5B8700034121 /* GlobalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD15AA226F5B8700034121 /* GlobalController.swift */; };
+		22FFD2272296C61D00F9CABA /* MapStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22FFD2262296C61D00F9CABA /* MapStoryboard.storyboard */; };
+		22FFD2292296C73000F9CABA /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FFD2282296C73000F9CABA /* MainMapViewController.swift */; };
+		4C0C88420AE61DD862059BD9 /* Pods_IcarusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440080AE66CEB3831B949617 /* Pods_IcarusUITests.framework */; };
+		9C3A0B7B8435D77117996276 /* Pods_IcarusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3635FCC9EE98E8886726855A /* Pods_IcarusTests.framework */; };
+		FFE88427D3C327854C59EAC1 /* Pods_Icarus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E304FB7E0937CF365A9ECC /* Pods_Icarus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +61,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05E304FB7E0937CF365A9ECC /* Pods_Icarus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Icarus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
+		22005182229EBEF300D3A672 /* stores.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stores.geojson; path = "../../store-locator-ios-master/mapbox-store-locator/stores.geojson"; sourceTree = "<group>"; };
+		22005184229EBEFC00D3A672 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = "../../store-locator-ios-master/mapbox-store-locator/Themes.swift"; sourceTree = "<group>"; };
+		221DC82E2278A31700D1A0C6 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomItemView.xib; path = "../../../../store-locator-ios-master/mapbox-store-locator/CustomItemView.xib"; sourceTree = "<group>"; };
+		223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLocatorViewController.swift; sourceTree = "<group>"; };
+		226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardStoryboard.storyboard; sourceTree = "<group>"; };
+		226B6DAA22AFDE49006A76A5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		226B6DAC22AFDE56006A76A5 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		226B6DAE22AFDE67006A76A5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		226B6DB022AFDE74006A76A5 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		2297B9EE2264CB41003EFDF2 /* Icarus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Icarus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2297B9F12264CB41003EFDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2297B9F32264CB41003EFDF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +86,27 @@
 		2297BA0D2264CB43003EFDF2 /* IcarusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IcarusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2297BA112264CB43003EFDF2 /* IcarusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcarusUITests.swift; sourceTree = "<group>"; };
 		2297BA132264CB43003EFDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2297BA202264CBCA003EFDF2 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		2297BA222264CBFE003EFDF2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2297BA992268BA7A00D96631 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		2297BA9B2268C10700D96631 /* LoginControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControlller.swift; sourceTree = "<group>"; };
+		22D00C0E226F134600541900 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		22D00C10226F135200541900 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		22D74D172265D4FA00BE303F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22F0AF1C2265FC2D001469CA /* bree-serif.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bree-serif.regular.ttf"; path = "../../bree-serif.regular.ttf"; sourceTree = "<group>"; };
+		22F0AF2122661712001469CA /* Cardo */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Cardo; path = ../../../Downloads/Cardo; sourceTree = "<group>"; };
+		22F0AF232266171C001469CA /* Abril_Fatface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Abril_Fatface; path = ../../../Downloads/Abril_Fatface; sourceTree = "<group>"; };
+		22FD15AA226F5B8700034121 /* GlobalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalController.swift; sourceTree = "<group>"; };
+		22FFD2262296C61D00F9CABA /* MapStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapStoryboard.storyboard; sourceTree = "<group>"; };
+		22FFD2282296C73000F9CABA /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
+		349756B372B8CE0E65BBD739 /* Pods-IcarusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IcarusUITests.release.xcconfig"; path = "Target Support Files/Pods-IcarusUITests/Pods-IcarusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3635FCC9EE98E8886726855A /* Pods_IcarusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IcarusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		440080AE66CEB3831B949617 /* Pods_IcarusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IcarusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		566DB19011CFEF3850A6C3A6 /* Pods-Icarus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Icarus.debug.xcconfig"; path = "Target Support Files/Pods-Icarus/Pods-Icarus.debug.xcconfig"; sourceTree = "<group>"; };
+		6106F049349D151FD0A4B8B0 /* Pods-Icarus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Icarus.release.xcconfig"; path = "Target Support Files/Pods-Icarus/Pods-Icarus.release.xcconfig"; sourceTree = "<group>"; };
+		6AD68C93820D48005027E160 /* Pods-IcarusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IcarusTests.release.xcconfig"; path = "Target Support Files/Pods-IcarusTests/Pods-IcarusTests.release.xcconfig"; sourceTree = "<group>"; };
+		E1EEFD593C37272E3F665818 /* Pods-IcarusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IcarusTests.debug.xcconfig"; path = "Target Support Files/Pods-IcarusTests/Pods-IcarusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EBF94206ADB7AE28754FE22D /* Pods-IcarusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IcarusUITests.debug.xcconfig"; path = "Target Support Files/Pods-IcarusUITests/Pods-IcarusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFE88427D3C327854C59EAC1 /* Pods_Icarus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3A0B7B8435D77117996276 /* Pods_IcarusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,19 +130,69 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0C88420AE61DD862059BD9 /* Pods_IcarusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		221DC8302278CFF700D1A0C6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2297BA222264CBFE003EFDF2 /* LoginViewController.swift */,
+				2297BA9B2268C10700D96631 /* LoginControlller.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		221DC8312278D00500D1A0C6 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				22D00C0E226F134600541900 /* RegisterViewController.swift */,
+				22D00C10226F135200541900 /* RegisterController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		226B6DA522AFDDA3006A76A5 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				226B6DA722AFDDD9006A76A5 /* Profile */,
+				226B6DA622AFDDC4006A76A5 /* Main */,
+				226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		226B6DA622AFDDC4006A76A5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				226B6DAA22AFDE49006A76A5 /* MainViewController.swift */,
+				226B6DAC22AFDE56006A76A5 /* MainController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		226B6DA722AFDDD9006A76A5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				226B6DAE22AFDE67006A76A5 /* ProfileViewController.swift */,
+				226B6DB022AFDE74006A76A5 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		2297B9E52264CB41003EFDF2 = {
 			isa = PBXGroup;
 			children = (
+				22F0AF1A2265FBB7001469CA /* Fonts */,
 				2297B9F02264CB41003EFDF2 /* Icarus */,
 				2297BA052264CB43003EFDF2 /* IcarusTests */,
 				2297BA102264CB43003EFDF2 /* IcarusUITests */,
 				2297B9EF2264CB41003EFDF2 /* Products */,
+				53851E2A68E511332E233805 /* Pods */,
+				E9CE831D53E0C180C7B94556 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +209,21 @@
 		2297B9F02264CB41003EFDF2 /* Icarus */ = {
 			isa = PBXGroup;
 			children = (
+				22005182229EBEF300D3A672 /* stores.geojson */,
+				22005184229EBEFC00D3A672 /* Themes.swift */,
 				2297B9F12264CB41003EFDF2 /* AppDelegate.swift */,
 				2297B9F32264CB41003EFDF2 /* ViewController.swift */,
 				2297B9F52264CB41003EFDF2 /* Main.storyboard */,
+				2297BA1F2264CB9A003EFDF2 /* Access */,
+				226B6DA522AFDDA3006A76A5 /* Dashboard */,
+				22FFD2242296C42B00F9CABA /* Map */,
 				2297B9F82264CB43003EFDF2 /* Assets.xcassets */,
 				2297B9FA2264CB43003EFDF2 /* LaunchScreen.storyboard */,
 				2297B9FD2264CB43003EFDF2 /* Info.plist */,
+				22D74D172265D4FA00BE303F /* GoogleService-Info.plist */,
+				22FD15AA226F5B8700034121 /* GlobalController.swift */,
+				2297BA992268BA7A00D96631 /* FirebaseController.swift */,
+				221DC82E2278A31700D1A0C6 /* UserController.swift */,
 			);
 			path = Icarus;
 			sourceTree = "<group>";
@@ -125,6 +246,69 @@
 			path = IcarusUITests;
 			sourceTree = "<group>";
 		};
+		2297BA1F2264CB9A003EFDF2 /* Access */ = {
+			isa = PBXGroup;
+			children = (
+				221DC8302278CFF700D1A0C6 /* Login */,
+				221DC8312278D00500D1A0C6 /* Register */,
+				2297BA202264CBCA003EFDF2 /* LoginStoryboard.storyboard */,
+			);
+			path = Access;
+			sourceTree = "<group>";
+		};
+		22F0AF1A2265FBB7001469CA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				22F0AF232266171C001469CA /* Abril_Fatface */,
+				22F0AF2122661712001469CA /* Cardo */,
+				22F0AF1C2265FC2D001469CA /* bree-serif.regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		22FFD2242296C42B00F9CABA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				22FFD2252296C4C300F9CABA /* MainMap */,
+				22FFD2262296C61D00F9CABA /* MapStoryboard.storyboard */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		22FFD2252296C4C300F9CABA /* MainMap */ = {
+			isa = PBXGroup;
+			children = (
+				223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */,
+				22FFD2282296C73000F9CABA /* MainMapViewController.swift */,
+				22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */,
+				223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */,
+			);
+			path = MainMap;
+			sourceTree = "<group>";
+		};
+		53851E2A68E511332E233805 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				566DB19011CFEF3850A6C3A6 /* Pods-Icarus.debug.xcconfig */,
+				6106F049349D151FD0A4B8B0 /* Pods-Icarus.release.xcconfig */,
+				E1EEFD593C37272E3F665818 /* Pods-IcarusTests.debug.xcconfig */,
+				6AD68C93820D48005027E160 /* Pods-IcarusTests.release.xcconfig */,
+				EBF94206ADB7AE28754FE22D /* Pods-IcarusUITests.debug.xcconfig */,
+				349756B372B8CE0E65BBD739 /* Pods-IcarusUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E9CE831D53E0C180C7B94556 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05E304FB7E0937CF365A9ECC /* Pods_Icarus.framework */,
+				3635FCC9EE98E8886726855A /* Pods_IcarusTests.framework */,
+				440080AE66CEB3831B949617 /* Pods_IcarusUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +316,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2297BA162264CB43003EFDF2 /* Build configuration list for PBXNativeTarget "Icarus" */;
 			buildPhases = (
+				6E9179490EF24AE8BB8A5F9D /* [CP] Check Pods Manifest.lock */,
 				2297B9EA2264CB41003EFDF2 /* Sources */,
 				2297B9EB2264CB41003EFDF2 /* Frameworks */,
 				2297B9EC2264CB41003EFDF2 /* Resources */,
+				F21F89CCA9BFF8DDE0321323 /* [CP] Embed Pods Frameworks */,
+				2CE1115443901185302000A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,6 +336,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2297BA192264CB43003EFDF2 /* Build configuration list for PBXNativeTarget "IcarusTests" */;
 			buildPhases = (
+				E39DF45C31005944CBA4E9F7 /* [CP] Check Pods Manifest.lock */,
 				2297B9FE2264CB43003EFDF2 /* Sources */,
 				2297B9FF2264CB43003EFDF2 /* Frameworks */,
 				2297BA002264CB43003EFDF2 /* Resources */,
@@ -167,6 +355,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2297BA1C2264CB43003EFDF2 /* Build configuration list for PBXNativeTarget "IcarusUITests" */;
 			buildPhases = (
+				D4E446A203E6A6DB365A17D5 /* [CP] Check Pods Manifest.lock */,
 				2297BA092264CB43003EFDF2 /* Sources */,
 				2297BA0A2264CB43003EFDF2 /* Frameworks */,
 				2297BA0B2264CB43003EFDF2 /* Resources */,
@@ -193,6 +382,11 @@
 				TargetAttributes = {
 					2297B9ED2264CB41003EFDF2 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2297BA012264CB43003EFDF2 = {
 						CreatedOnToolsVersion = 10.0;
@@ -230,8 +424,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2297B9FC2264CB43003EFDF2 /* LaunchScreen.storyboard in Resources */,
+				223F3B2222AE4AF50020BFA0 /* CustomItemView.xib in Resources */,
 				2297B9F92264CB43003EFDF2 /* Assets.xcassets in Resources */,
+				22F0AF242266171C001469CA /* Abril_Fatface in Resources */,
+				22F0AF2222661712001469CA /* Cardo in Resources */,
+				22F0AF1D2265FC2D001469CA /* bree-serif.regular.ttf in Resources */,
+				226B6DA922AFDDF2006A76A5 /* DashboardStoryboard.storyboard in Resources */,
+				22D74D182265D4FA00BE303F /* GoogleService-Info.plist in Resources */,
+				22FFD2272296C61D00F9CABA /* MapStoryboard.storyboard in Resources */,
+				22005183229EBEF300D3A672 /* stores.geojson in Resources */,
 				2297B9F72264CB41003EFDF2 /* Main.storyboard in Resources */,
+				2297BA212264CBCA003EFDF2 /* LoginStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +454,181 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CE1115443901185302000A1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E9179490EF24AE8BB8A5F9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Icarus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4E446A203E6A6DB365A17D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IcarusUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E39DF45C31005944CBA4E9F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IcarusTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F21F89CCA9BFF8DDE0321323 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/MapboxCoreNavigation/MapboxCoreNavigation.framework",
+				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
+				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
+				"${BUILT_PRODUCTS_DIR}/MapboxNavigation/MapboxNavigation.framework",
+				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework",
+				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/MapboxSpeech/MapboxSpeech.framework",
+				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Solar/Solar.framework",
+				"${BUILT_PRODUCTS_DIR}/Turf/Turf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxCoreNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigationNative.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/MapboxNavigationNative.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxSpeech.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Solar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Turf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2297B9EA2264CB41003EFDF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221DC82F2278A31700D1A0C6 /* UserController.swift in Sources */,
+				22005185229EBEFC00D3A672 /* Themes.swift in Sources */,
+				2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */,
 				2297B9F42264CB41003EFDF2 /* ViewController.swift in Sources */,
+				226B6DAD22AFDE56006A76A5 /* MainController.swift in Sources */,
+				22D00C0F226F134600541900 /* RegisterViewController.swift in Sources */,
+				226B6DAF22AFDE67006A76A5 /* ProfileViewController.swift in Sources */,
+				22FFD2292296C73000F9CABA /* MainMapViewController.swift in Sources */,
+				22005181229EBEB300D3A672 /* StoreLocatorViewController.swift in Sources */,
+				226B6DAB22AFDE49006A76A5 /* MainViewController.swift in Sources */,
+				2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */,
+				22D00C11226F135200541900 /* RegisterController.swift in Sources */,
+				223F3B2422AE4ECD0020BFA0 /* RouteLocatorViewController.swift in Sources */,
+				2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */,
+				22FD15AB226F5B8700034121 /* GlobalController.swift in Sources */,
 				2297B9F22264CB41003EFDF2 /* AppDelegate.swift in Sources */,
+				226B6DB122AFDE74006A76A5 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,9 +801,11 @@
 		};
 		2297BA172264CB43003EFDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 566DB19011CFEF3850A6C3A6 /* Pods-Icarus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5J4UB2HP7G;
 				INFOPLIST_FILE = Icarus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,9 +820,11 @@
 		};
 		2297BA182264CB43003EFDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6106F049349D151FD0A4B8B0 /* Pods-Icarus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5J4UB2HP7G;
 				INFOPLIST_FILE = Icarus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,6 +839,7 @@
 		};
 		2297BA1A2264CB43003EFDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1EEFD593C37272E3F665818 /* Pods-IcarusTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +860,7 @@
 		};
 		2297BA1B2264CB43003EFDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AD68C93820D48005027E160 /* Pods-IcarusTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +881,7 @@
 		};
 		2297BA1D2264CB43003EFDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBF94206ADB7AE28754FE22D /* Pods-IcarusUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +901,7 @@
 		};
 		2297BA1E2264CB43003EFDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 349756B372B8CE0E65BBD739 /* Pods-IcarusUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
