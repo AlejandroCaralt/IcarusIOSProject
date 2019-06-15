@@ -10,21 +10,20 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var profielImage: UIImageView!
+    @IBOutlet weak var usrAccount: UILabel!
+    
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var cityInput: UITextField!
+    @IBOutlet weak var sentenceInput: UITextField!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

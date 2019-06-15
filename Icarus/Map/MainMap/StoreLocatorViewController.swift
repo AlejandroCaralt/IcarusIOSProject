@@ -5,7 +5,6 @@
 //  Created by Nadia Barbosa on 9/12/17.
 //  Copyright © 2017 Mapbox. All rights reserved.
 //
-
 import Mapbox
 import MapboxDirections
 
@@ -33,7 +32,7 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     var customItemViewSize = CGRect()
     var featuresWithRoute : [String : (MGLPointFeature, [CLLocationCoordinate2D])] = [:]
     var selectedFeature : (MGLPointFeature, [CLLocationCoordinate2D])?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,9 +158,9 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
                     where feature is MGLPointFeature {
                         changeItemColor(feature: feature)
                         generateItemPages(feature: feature as! MGLPointFeature)
-//
-//                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3.5/4)
-//                        mapView.frame = mapViewSize
+                        //
+                        //                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3.5/4)
+                        //                        mapView.frame = mapViewSize
                         pageViewController.view.isHidden = false
                 }
             } else {
@@ -461,22 +460,22 @@ class CustomItemView : UIView {
         containerView.frame = bounds
         containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//        if containerView.headerView != nil {
-//            containerView.headerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//            containerView.headerView.translatesAutoresizingMaskIntoConstraints = false
-//            containerView.headerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height * 0.25)
-//        }
-//        
-//        if containerView.iconImageView != nil {
-//            containerView.iconImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//            containerView.iconImageView.translatesAutoresizingMaskIntoConstraints = false
-//        }
+        //        if containerView.headerView != nil {
+        //            containerView.headerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //            containerView.headerView.translatesAutoresizingMaskIntoConstraints = false
+        //            containerView.headerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height * 0.25)
+        //        }
+        //
+        //        if containerView.iconImageView != nil {
+        //            containerView.iconImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //            containerView.iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        //        }
     }
     
     required convenience init(feature: MGLPointFeature, themeColor: Color, iconImage: UIImage) {
         
         self.init(frame: CGRect())
-//        self.themeColor = themeColor
+        //        self.themeColor = themeColor
         self.iconImage = iconImage
         self.selectedFeature = feature
         
@@ -495,44 +494,44 @@ class CustomItemView : UIView {
     
     // MARK: Update the attribute keys based on your data's format.
     public func updateLabels() {
-//        if let name : String = selectedFeature.attribute(forKey: "name") as? String {
-//            containerView.itemNameLabel.text = name
-//        }
-//        if let hours : String = selectedFeature.attribute(forKey: "hours") as? String {
-//            containerView.itemHourLabel.text = hours
-//        }
-//        if let description : String = selectedFeature.attribute(forKey: "description") as? String  {
-//            containerView.itemDescriptionLabel.text = description
-//        }
-//
-//        if let number : String = selectedFeature.attribute(forKey: "phone") as? String  {
-//            containerView.itemPhoneNumberLabel.text = number
-//        }
+        //        if let name : String = selectedFeature.attribute(forKey: "name") as? String {
+        //            containerView.itemNameLabel.text = name
+        //        }
+        //        if let hours : String = selectedFeature.attribute(forKey: "hours") as? String {
+        //            containerView.itemHourLabel.text = hours
+        //        }
+        //        if let description : String = selectedFeature.attribute(forKey: "description") as? String  {
+        //            containerView.itemDescriptionLabel.text = description
+        //        }
+        //
+        //        if let number : String = selectedFeature.attribute(forKey: "phone") as? String  {
+        //            containerView.itemPhoneNumberLabel.text = number
+        //        }
     }
     
     func createItemView() {
-//        
-//        containerView.headerView.backgroundColor = themeColor.primaryDarkColor
-//        
-//        // Create the icon image for the logo.
-//        containerView.iconImageView.image = iconImage
-//        
-//        // Create item name label.
-//        containerView.itemNameLabel.textColor = .white
-//        
-//        // Create description label.
-//        containerView.itemDescriptionLabel.textColor = .white
-//        
-//        // Create hours open label.
-//        containerView.itemHourLabel.textColor = themeColor.lowerCardTextColor
-//        
-//        //Create phone number label.
-//        containerView.itemPhoneNumberLabel.textColor = themeColor.lowerCardTextColor
-//        
-//        // Static labels for attributes.
-//        containerView.hoursLabel.textColor = themeColor.lowerCardTextColor
-//        
-//        containerView.phoneNumberLabel.textColor = themeColor.lowerCardTextColor
+        //
+        //        containerView.headerView.backgroundColor = themeColor.primaryDarkColor
+        //
+        //        // Create the icon image for the logo.
+        //        containerView.iconImageView.image = iconImage
+        //
+        //        // Create item name label.
+        //        containerView.itemNameLabel.textColor = .white
+        //
+        //        // Create description label.
+        //        containerView.itemDescriptionLabel.textColor = .white
+        //
+        //        // Create hours open label.
+        //        containerView.itemHourLabel.textColor = themeColor.lowerCardTextColor
+        //
+        //        //Create phone number label.
+        //        containerView.itemPhoneNumberLabel.textColor = themeColor.lowerCardTextColor
+        //
+        //        // Static labels for attributes.
+        //        containerView.hoursLabel.textColor = themeColor.lowerCardTextColor
+        //
+        //        containerView.phoneNumberLabel.textColor = themeColor.lowerCardTextColor
     }
 }
 

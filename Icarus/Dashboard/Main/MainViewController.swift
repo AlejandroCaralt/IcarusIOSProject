@@ -11,24 +11,44 @@ import Mapbox
 import MapboxDirections
 
 class MainViewController: UIViewController {
-
+    
+    // MARK: Variables
+    
+    // Container views
+    @IBOutlet weak var routesCircle: UIView!
+    @IBOutlet weak var kmCircle: UIView!
+    @IBOutlet weak var minCircle: UIView!
+    
+    // Data to charge
+    @IBOutlet weak var routesNumber: UILabel!
+    @IBOutlet weak var kmNumber: UILabel!
+    @IBOutlet weak var minNumber: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        putDashboardStyle()
+        
     }
     
 
-    /*
-    // MARK: - Navigation
+    func putDashboardStyle() {
+    
+        self.routesCircle.layer.cornerRadius = self.routesCircle.bounds.width / 2
+        self.routesCircle.layer.borderWidth = 4
+        self.routesCircle.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
+        
+        self.kmCircle.layer.cornerRadius = self.kmCircle.bounds.width / 2
+        self.kmCircle.layer.borderWidth = 5
+        self.kmCircle.layer.borderColor =  UIColor.black.withAlphaComponent(0.7).cgColor
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        self.minCircle.layer.cornerRadius = self.minCircle.bounds.width / 2
+        self.minCircle.layer.borderWidth = 4
+        self.minCircle.layer.borderColor =  UIColor.black.withAlphaComponent(0.7).cgColor
+
     }
-    */
-
+    
 }
 
 

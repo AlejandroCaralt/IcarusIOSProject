@@ -12,7 +12,6 @@
 		22005185229EBEFC00D3A672 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005184229EBEFC00D3A672 /* Themes.swift */; };
 		221DC82F2278A31700D1A0C6 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DC82E2278A31700D1A0C6 /* UserController.swift */; };
 		223F3B2222AE4AF50020BFA0 /* CustomItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */; };
-		223F3B2422AE4ECD0020BFA0 /* RouteLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */; };
 		226B6DA922AFDDF2006A76A5 /* DashboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */; };
 		226B6DAB22AFDE49006A76A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DAA22AFDE49006A76A5 /* MainViewController.swift */; };
 		226B6DAD22AFDE56006A76A5 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B6DAC22AFDE56006A76A5 /* MainController.swift */; };
@@ -67,7 +66,6 @@
 		22005184229EBEFC00D3A672 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = "../../store-locator-ios-master/mapbox-store-locator/Themes.swift"; sourceTree = "<group>"; };
 		221DC82E2278A31700D1A0C6 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomItemView.xib; path = "../../../../store-locator-ios-master/mapbox-store-locator/CustomItemView.xib"; sourceTree = "<group>"; };
-		223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteLocatorViewController.swift; sourceTree = "<group>"; };
 		226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardStoryboard.storyboard; sourceTree = "<group>"; };
 		226B6DAA22AFDE49006A76A5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		226B6DAC22AFDE56006A76A5 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */,
 				22FFD2282296C73000F9CABA /* MainMapViewController.swift */,
 				22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */,
-				223F3B2322AE4ECD0020BFA0 /* RouteLocatorViewController.swift */,
 			);
 			path = MainMap;
 			sourceTree = "<group>";
@@ -624,7 +621,6 @@
 				226B6DAB22AFDE49006A76A5 /* MainViewController.swift in Sources */,
 				2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */,
 				22D00C11226F135200541900 /* RegisterController.swift in Sources */,
-				223F3B2422AE4ECD0020BFA0 /* RouteLocatorViewController.swift in Sources */,
 				2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */,
 				22FD15AB226F5B8700034121 /* GlobalController.swift in Sources */,
 				2297B9F22264CB41003EFDF2 /* AppDelegate.swift in Sources */,
