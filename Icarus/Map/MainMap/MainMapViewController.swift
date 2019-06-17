@@ -8,6 +8,7 @@
 
 import UIKit
 import Mapbox
+import Firebase
 
 class MainMapViewController: UIViewController, MGLMapViewDelegate {
 
@@ -17,6 +18,7 @@ class MainMapViewController: UIViewController, MGLMapViewDelegate {
         var polylineSource: MGLShapeSource?
         var currentIndex = 2
         var allCoordinates: [CLLocationCoordinate2D]!
+    var route: FirebaseRoute!
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -32,6 +34,7 @@ class MainMapViewController: UIViewController, MGLMapViewDelegate {
             mapView.delegate = self
             
             addBackButton()
+            deleteButton()
         }
         
         // Wait until the map is loaded before adding to the map.
@@ -69,10 +72,67 @@ class MainMapViewController: UIViewController, MGLMapViewDelegate {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
         button.tintColor = viewControllerTheme?.themeColor.primaryDarkColor
-        button.addTarget(self, action: #selector(StoreLocatorViewController.buttonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
         
         self.view.addSubview(button)
     }
+    
+    func deleteButton() {
+        let button = UIButton(type: UIButton.ButtonType.system) as UIButton
+        
+        button.frame = CGRect(x:view.bounds.width * 13 / 15, y:view.bounds.height / 15, width:50 , height: 50)
+        button.setImage(UIImage(named: "trash"), for: UIControl.State.normal)
+        button.backgroundColor = .clear
+        button.layer.cornerRadius = 25
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
+        button.tintColor = viewControllerTheme?.themeColor.primaryDarkColor
+        button.addTarget(self, action: #selector(self.deleteButtonAction(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(
+            title: "Eliminar ruta",
+            message: "",
+            preferredStyle: UIAlertController.Style.alert)
+        let cancelButton = UIAlertAction(
+            title:"Cancelar",
+            style: UIAlertAction.Style.default,
+            handler:
+            {
+                (alert: UIAlertAction!)  in
+        })
+        let okButton = UIAlertAction(title: "Eliminar ruta", style: UIAlertAction.Style.default) { (alert: UIAlertAction) in
+            let storyboard = UIStoryboard(name: "DashboardStoryboard", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Dashboard")
+            self.deleteRoute()
+            self.present(vc, animated: true, completion: nil)
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    @objc func deleteButtonAction(_ sender:UIButton!)
+    {
+        self.showAlert()
+    }
+    
+    func deleteRoute() {
+        let db = Firestore.firestore()
+        
+        db.collection("routes").document(route.id).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+
     
     @objc func buttonAction(_ sender:UIButton!)
     {

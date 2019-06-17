@@ -122,8 +122,9 @@ class MainViewController: UIViewController {
                 let time = document["time"] as! Double
                 let typeRoute = document["typeRoute"] as! String
                 let name = document["name"] as! String
+                let id = document.documentID
                 
-                let route: FirebaseRoute = FirebaseRoute(routeCoordinates: routeCoordinates, km: km, owner: owner, highestPoint: highestPoint, lowestPoint: lowestPoint, time: time, typeRoute: typeRoute, name: name)
+                let route: FirebaseRoute = FirebaseRoute(routeCoordinates: routeCoordinates, km: km, owner: owner, highestPoint: highestPoint, lowestPoint: lowestPoint, time: time, typeRoute: typeRoute, name: name, id: id)
                 
                 self.ownRoutes.append(route)
                 
@@ -253,6 +254,7 @@ class ThemePickerViewController: UITableViewController {
             CLLocationCoordinates.append(cll2d)
         }
         vc.allCoordinates = CLLocationCoordinates
+        vc.route = self.ownRoutes![indexPath.row]
         self.present(vc, animated: true, completion: nil)
     }
 }

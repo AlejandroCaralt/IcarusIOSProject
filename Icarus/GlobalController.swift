@@ -74,8 +74,9 @@ struct FirebaseRoute {
     var time: Double!
     var typeRoute: String!
     var name: String!
+    var id: String!
     
-    init(routeCoordinates: [GeoPoint], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String) {
+    init(routeCoordinates: [GeoPoint], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String, id: String) {
         self.routeCoordinates = routeCoordinates
         self.km = km
         self.owner = owner
@@ -84,6 +85,7 @@ struct FirebaseRoute {
         self.time = time
         self.typeRoute = typeRoute
         self.name = name
+        self.id = id
     }
     
 }

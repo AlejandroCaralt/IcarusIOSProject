@@ -28,6 +28,8 @@
 		2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA222264CBFE003EFDF2 /* LoginViewController.swift */; };
 		2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA992268BA7A00D96631 /* FirebaseController.swift */; };
 		2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA9B2268C10700D96631 /* LoginControlller.swift */; };
+		22B0B9CC22B7528B0000E79E /* CreateRouteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22B0B9CB22B7528B0000E79E /* CreateRouteStoryboard.storyboard */; };
+		22B0B9CE22B7540F0000E79E /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0B9CD22B7540F0000E79E /* CreateRouteViewController.swift */; };
 		22D00C0F226F134600541900 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00C0E226F134600541900 /* RegisterViewController.swift */; };
 		22D00C11226F135200541900 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00C10226F135200541900 /* RegisterController.swift */; };
 		22D74D182265D4FA00BE303F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22D74D172265D4FA00BE303F /* GoogleService-Info.plist */; };
@@ -88,6 +90,8 @@
 		2297BA222264CBFE003EFDF2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2297BA992268BA7A00D96631 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		2297BA9B2268C10700D96631 /* LoginControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControlller.swift; sourceTree = "<group>"; };
+		22B0B9CB22B7528B0000E79E /* CreateRouteStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateRouteStoryboard.storyboard; sourceTree = "<group>"; };
+		22B0B9CD22B7540F0000E79E /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
 		22D00C0E226F134600541900 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		22D00C10226F135200541900 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		22D74D172265D4FA00BE303F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -254,6 +258,15 @@
 			path = Access;
 			sourceTree = "<group>";
 		};
+		22B0B9CA22B7526B0000E79E /* CreateRoute */ = {
+			isa = PBXGroup;
+			children = (
+				22B0B9CB22B7528B0000E79E /* CreateRouteStoryboard.storyboard */,
+				22B0B9CD22B7540F0000E79E /* CreateRouteViewController.swift */,
+			);
+			path = CreateRoute;
+			sourceTree = "<group>";
+		};
 		22F0AF1A2265FBB7001469CA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +280,7 @@
 		22FFD2242296C42B00F9CABA /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				22B0B9CA22B7526B0000E79E /* CreateRoute */,
 				22FFD2252296C4C300F9CABA /* MainMap */,
 				22FFD2262296C61D00F9CABA /* MapStoryboard.storyboard */,
 			);
@@ -428,6 +442,7 @@
 				22F0AF1D2265FC2D001469CA /* bree-serif.regular.ttf in Resources */,
 				226B6DA922AFDDF2006A76A5 /* DashboardStoryboard.storyboard in Resources */,
 				22D74D182265D4FA00BE303F /* GoogleService-Info.plist in Resources */,
+				22B0B9CC22B7528B0000E79E /* CreateRouteStoryboard.storyboard in Resources */,
 				22FFD2272296C61D00F9CABA /* MapStoryboard.storyboard in Resources */,
 				22005183229EBEF300D3A672 /* stores.geojson in Resources */,
 				2297B9F72264CB41003EFDF2 /* Main.storyboard in Resources */,
@@ -560,8 +575,6 @@
 				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxNavigation/MapboxNavigation.framework",
-				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework",
-				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/MapboxSpeech/MapboxSpeech.framework",
 				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -588,8 +601,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigationNative.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/MapboxNavigationNative.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxSpeech.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -617,6 +628,7 @@
 				22005185229EBEFC00D3A672 /* Themes.swift in Sources */,
 				2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */,
 				2297B9F42264CB41003EFDF2 /* ViewController.swift in Sources */,
+				22B0B9CE22B7540F0000E79E /* CreateRouteViewController.swift in Sources */,
 				226B6DAD22AFDE56006A76A5 /* MainController.swift in Sources */,
 				22D00C0F226F134600541900 /* RegisterViewController.swift in Sources */,
 				226B6DAF22AFDE67006A76A5 /* ProfileViewController.swift in Sources */,

@@ -113,24 +113,22 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.17.0)
   - GTMSessionFetcher/Core (1.2.1)
-  - Kingfisher (4.5.0)
+  - Kingfisher (4.10.1)
   - leveldb-library (1.20)
-  - Mapbox-iOS-SDK (4.10.0)
-  - MapboxCoreNavigation (0.32.0):
-    - MapboxDirections.swift (~> 0.27.3)
-    - MapboxMobileEvents (~> 0.9.3)
-    - MapboxNavigationNative (~> 6.1.3)
-    - Turf (~> 0.3.0)
-  - MapboxDirections.swift (0.27.3):
+  - Mapbox-iOS-SDK (4.9.0)
+  - MapboxCoreNavigation (0.17.0):
+    - MapboxDirections.swift (~> 0.20.0)
+    - MapboxMobileEvents (~> 0.4)
+    - Turf (~> 0.1)
+  - MapboxDirections.swift (0.20.0):
     - Polyline (~> 4.2)
-  - MapboxMobileEvents (0.9.3)
-  - MapboxNavigation (0.32.0):
-    - Mapbox-iOS-SDK (~> 4.3)
-    - MapboxCoreNavigation (= 0.32.0)
-    - MapboxSpeech (~> 0.1.0)
+  - MapboxMobileEvents (0.9.4)
+  - MapboxNavigation (0.17.0):
+    - Mapbox-iOS-SDK (~> 4.0)
+    - MapboxCoreNavigation (= 0.17.0)
+    - MapboxSpeech (~> 0.0.1)
     - Solar (~> 2.1)
-  - MapboxNavigationNative (6.1.3)
-  - MapboxSpeech (0.1.1)
+  - MapboxSpeech (0.0.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -148,9 +146,10 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - GoogleSignIn
-  - Kingfisher (~> 4.5.0)
-  - Mapbox-iOS-SDK (~> 4.0)
-  - MapboxNavigation (~> 0.32.0)
+  - Kingfisher
+  - Mapbox-iOS-SDK
+  - MapboxDirections.swift
+  - MapboxNavigation
   - RSLoadingView
 
 SPEC REPOS:
@@ -178,7 +177,6 @@ SPEC REPOS:
     - MapboxDirections.swift
     - MapboxMobileEvents
     - MapboxNavigation
-    - MapboxNavigationNative
     - MapboxSpeech
     - nanopb
     - Polyline
@@ -204,15 +202,14 @@ SPEC CHECKSUMS:
   "gRPC-C++": e76441995900ac90e9bd98644ab4733f12521edf
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  Mapbox-iOS-SDK: 8b1b777de7de373cdf000994c91af101ef886477
-  MapboxCoreNavigation: bcfc8625124c50774140f49b09f59be6aa0a40ab
-  MapboxDirections.swift: af3d8bc8cd80ed6e498dd6ed933f3c348799e1e2
-  MapboxMobileEvents: dea3b845b1a8528def7150dedf0cedefc6dfe284
-  MapboxNavigation: a8200b70ae9481ba245a6cfe8b48263421f7eff1
-  MapboxNavigationNative: c7340cdfcb28f88aa02b6e3896151f4cd897f323
-  MapboxSpeech: 59b3984d3f433a443d24acf53097f918c5cc70f9
+  Mapbox-iOS-SDK: 225036950837cbe408e6b333e51cd6001c122499
+  MapboxCoreNavigation: 729666a164ceacb789b63047406a5c95ca965bbd
+  MapboxDirections.swift: 9a46ca0f0608c76393f392ae793459cc30aa846f
+  MapboxMobileEvents: d3ca65878823fb635e200bb5a1fc083369590818
+  MapboxNavigation: afe18c9de475aefc1387100daa3a46cc8f95a5de
+  MapboxSpeech: 9d46bca4d7e96318ec8d6ce93a1153ebaef319ba
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Polyline: 0e9890790292741c8186201a536b6bb6a78d02dd
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
@@ -220,6 +217,6 @@ SPEC CHECKSUMS:
   Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
   Turf: c6bdf62d6a70c647874f295dd1cf4eefc0c3e9e6
 
-PODFILE CHECKSUM: 2292d309407dedee8c79aac1297aef57fd1dcdf9
+PODFILE CHECKSUM: 8657b09f26e0ce0b1c6c68c9d3163fe9e4521626
 
 COCOAPODS: 1.6.2
