@@ -32,6 +32,8 @@
 	<string>pk.eyJ1IjoiZm9yZ3VzZGllIiwiYSI6ImNqb3I2NWl2bzBiZjUzcXBhZHJ2cm82ZnAifQ.gqWYR--zW5eo5gcbxfDGUw</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Shows your location on the map.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allows you to add photos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>bree-serif.regular.ttf</string>
@@ -48,7 +50,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>MapStoryboard</string>
+	<string>LoginStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

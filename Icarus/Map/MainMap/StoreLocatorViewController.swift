@@ -5,20 +5,20 @@
 //  Created by Nadia Barbosa on 9/12/17.
 //  Copyright © 2017 Mapbox. All rights reserved.
 //
+
 import Mapbox
-import MapboxDirections
 
 class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
     
     // Lines 14 is for the example only. Users will want to set the theme on line 38.
+    var viewControllerTheme : Theme?
     
     // MARK: Customize these variables to style your map:
     // Use a MBXTheme from Themes.swift, or create a Color object that contains the necessary colors and use it to set the theme.
-    var viewControllerTheme : Theme? = MBXTheme.grayTheme
+    //      var viewControllerTheme : Theme? = MBXTheme.purpleTheme
     
-    var centerCoordinate = CLLocationCoordinate2D(latitude: 36.7225193, longitude: -4.4240461) // This will serve as the center coordinate if the user denies location permissions.
+    var centerCoordinate = CLLocationCoordinate2D(latitude: 40.7478, longitude: -73.9898) // This will serve as the center coordinate if the user denies location permissions.
     var mapView: MGLMapView!
-    
     var itemView : CustomItemView! // Keeps track of the current CustomItemView.
     
     let userLocationFeature = MGLPointFeature()
@@ -33,33 +33,32 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     var featuresWithRoute : [String : (MGLPointFeature, [CLLocationCoordinate2D])] = [:]
     var selectedFeature : (MGLPointFeature, [CLLocationCoordinate2D])?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = false
         }
         
-        // Add the mapView to the story
-        addMapView()
+        mapView = MGLMapView(frame: view.bounds, styleURL: viewControllerTheme?.styleURL) // Set the map's style url.
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.delegate = self
+        mapView.zoomLevel = 11
         
-        // Add the BackButton to the story
-        addBackButton()
+        //   mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)      // MARK: To center on the user's location, comment this line out and uncomment the following line.
         
-        // Check the user localitation authorizationStatus
+        mapView.userTrackingMode = .follow
+        
+        view.addSubview(mapView)
+        
         if CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .notDetermined {
-            mapView.setCenter(centerCoordinate, zoomLevel: 13, animated: false)
+            mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)
         }
-        
-        // Check when the map is tapped and handle it on 'handleItemTap'
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleItemTap(sender:))))
         
-        // Defines the Carda Size
-        customItemViewSize = CGRect(x: (mapView.bounds.width / 10) / 2  , y: mapView.bounds.height * 15 / 20, width: view.bounds.width * 9 / 10, height: view.bounds.height / 5)
+        customItemViewSize = CGRect(x: 0, y: mapView.bounds.height * 3 / 4, width: view.bounds.width, height: view.bounds.height / 4)
         
         addPageViewController()
     }
-    
     
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         
@@ -74,7 +73,7 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             addUserLocationDot(to: style)
         } else {
-            mapView.setCenter(centerCoordinate, zoomLevel: 13, animated: false)
+            mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)
         }
     }
     
@@ -151,16 +150,16 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
             let point = sender.location(in: sender.view!)
             let layer: Set = ["store-locations"]
             
-            if mapView.visibleFeatures(at: point, styleLayerIdentifiers: layer).count > 0 && !UIDevice.current.orientation.isLandscape {
+            if mapView.visibleFeatures(at: point, styleLayerIdentifiers: layer).count > 0 && !UIDeviceOrientation.i{
                 
                 // If there is an item at the tap's location, change the marker to the selected marker.
                 for feature in mapView.visibleFeatures(at: point, styleLayerIdentifiers: layer)
                     where feature is MGLPointFeature {
                         changeItemColor(feature: feature)
                         generateItemPages(feature: feature as! MGLPointFeature)
-                        //
-                        //                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3.5/4)
-                        //                        mapView.frame = mapViewSize
+                        
+                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3/4)
+                        mapView.frame = mapViewSize
                         pageViewController.view.isHidden = false
                 }
             } else {
@@ -211,11 +210,7 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
             
             guard let route = routes?.first else { return }
             routeCoordinates = route.coordinates!
-            
-            
-            // TODO: Change value to normal route
             self.featuresWithRoute[self.getKeyForFeature(feature: destination)] = (destination, routeCoordinates)
-            print(routeCoordinates)
         }
         return routeCoordinates
     }
@@ -273,46 +268,8 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         pageViewController.view.backgroundColor = viewControllerTheme?.themeColor.primaryDarkColor
         pageViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = true
-        pageViewController.view.layer.borderWidth = 5
-        pageViewController.view.layer.borderColor = UIColor.black.withAlphaComponent(0.2).cgColor
         view.addSubview(pageViewController.view)
         pageViewController.view.isHidden = true
-    }
-    
-    func addMapView() {
-        mapView = MGLMapView(frame: view.bounds, styleURL: viewControllerTheme?.styleURL) // Set the map's style url.
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.delegate = self
-        mapView.setCenter(
-            CLLocationCoordinate2D(latitude: 36.7225193, longitude: -4.4240461),
-            zoomLevel: 11,
-            animated: false)
-        
-        //   mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)      // MARK: To center on the user's location, comment this line out and uncomment the following line.
-        
-        mapView.userTrackingMode = .follow
-        
-        view.addSubview(mapView)
-    }
-    
-    func addBackButton() {
-        let button = UIButton(type: UIButton.ButtonType.system) as UIButton
-        
-        button.frame = CGRect(x:view.bounds.width / 15, y:view.bounds.height / 15, width:50 , height: 50)
-        button.setImage(UIImage(named: "left-arrow"), for: UIControl.State.normal)
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 25
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
-        button.tintColor = viewControllerTheme?.themeColor.primaryDarkColor
-        button.addTarget(self, action: #selector(StoreLocatorViewController.buttonAction(_:)), for: .touchUpInside)
-        
-        self.view.addSubview(button)
-    }
-    
-    @objc func buttonAction(_ sender:UIButton!)
-    {
-        print("Button tapped")
     }
     
     // Determine the feature that was tapped on.
@@ -355,12 +312,12 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     
     // Hide callout when device is in landscape mode.
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isPortrait {
+        if UIDeviceOrientation.isPortrait(UIDevice.current.orientation) {
             pageViewController.view.layoutSubviews()
             if let viewController = pageViewController.viewControllers?.first {
                 viewController.view.layoutSubviews()
             }
-        } else if UIDevice.current.orientation.isLandscape {
+        } else if UIDeviceOrientation.isLandscape(UIDevice.current.orientation) {
             changeItemColor(feature: MGLPointFeature())
             pageViewController.view.isHidden = true
             mapView.frame = view.bounds
@@ -445,7 +402,15 @@ class CustomItemView : UIView {
     var selectedFeature = MGLPointFeature()
     
     @IBOutlet var containerView: CustomItemView!
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemHourLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
+    @IBOutlet weak var itemDescriptionLabel: UILabel!
+    @IBOutlet weak var itemPhoneNumberLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     var iconImage = UIImage()
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var headerView: UIView!
     var routeDistance = ""
     var themeColor : Color!
     
@@ -453,6 +418,7 @@ class CustomItemView : UIView {
         super.init(frame: CGRect())
         
         Bundle.main.loadNibNamed("CustomItemView", owner: self, options: nil)
+        backgroundColor = .purple
         
         self.frame = bounds
         addSubview(containerView)
@@ -460,22 +426,22 @@ class CustomItemView : UIView {
         containerView.frame = bounds
         containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        //        if containerView.headerView != nil {
-        //            containerView.headerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //            containerView.headerView.translatesAutoresizingMaskIntoConstraints = false
-        //            containerView.headerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height * 0.25)
-        //        }
-        //
-        //        if containerView.iconImageView != nil {
-        //            containerView.iconImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //            containerView.iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        //        }
+        if containerView.headerView != nil {
+            containerView.headerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            containerView.headerView.translatesAutoresizingMaskIntoConstraints = false
+            containerView.headerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height * 0.25)
+        }
+        
+        if containerView.iconImageView != nil {
+            containerView.iconImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            containerView.iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     required convenience init(feature: MGLPointFeature, themeColor: Color, iconImage: UIImage) {
         
         self.init(frame: CGRect())
-        //        self.themeColor = themeColor
+        self.themeColor = themeColor
         self.iconImage = iconImage
         self.selectedFeature = feature
         
@@ -494,44 +460,44 @@ class CustomItemView : UIView {
     
     // MARK: Update the attribute keys based on your data's format.
     public func updateLabels() {
-        //        if let name : String = selectedFeature.attribute(forKey: "name") as? String {
-        //            containerView.itemNameLabel.text = name
-        //        }
-        //        if let hours : String = selectedFeature.attribute(forKey: "hours") as? String {
-        //            containerView.itemHourLabel.text = hours
-        //        }
-        //        if let description : String = selectedFeature.attribute(forKey: "description") as? String  {
-        //            containerView.itemDescriptionLabel.text = description
-        //        }
-        //
-        //        if let number : String = selectedFeature.attribute(forKey: "phone") as? String  {
-        //            containerView.itemPhoneNumberLabel.text = number
-        //        }
+        if let name : String = selectedFeature.attribute(forKey: "name") as? String {
+            containerView.itemNameLabel.text = name
+        }
+        if let hours : String = selectedFeature.attribute(forKey: "hours") as? String {
+            containerView.itemHourLabel.text = hours
+        }
+        if let description : String = selectedFeature.attribute(forKey: "description") as? String  {
+            containerView.itemDescriptionLabel.text = description
+        }
+        
+        if let number : String = selectedFeature.attribute(forKey: "phone") as? String  {
+            containerView.itemPhoneNumberLabel.text = number
+        }
     }
     
     func createItemView() {
-        //
-        //        containerView.headerView.backgroundColor = themeColor.primaryDarkColor
-        //
-        //        // Create the icon image for the logo.
-        //        containerView.iconImageView.image = iconImage
-        //
-        //        // Create item name label.
-        //        containerView.itemNameLabel.textColor = .white
-        //
-        //        // Create description label.
-        //        containerView.itemDescriptionLabel.textColor = .white
-        //
-        //        // Create hours open label.
-        //        containerView.itemHourLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        //Create phone number label.
-        //        containerView.itemPhoneNumberLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        // Static labels for attributes.
-        //        containerView.hoursLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        containerView.phoneNumberLabel.textColor = themeColor.lowerCardTextColor
+        
+        containerView.headerView.backgroundColor = themeColor.primaryDarkColor
+        
+        // Create the icon image for the logo.
+        containerView.iconImageView.image = iconImage
+        
+        // Create item name label.
+        containerView.itemNameLabel.textColor = .white
+        
+        // Create description label.
+        containerView.itemDescriptionLabel.textColor = .white
+        
+        // Create hours open label.
+        containerView.itemHourLabel.textColor = themeColor.lowerCardTextColor
+        
+        //Create phone number label.
+        containerView.itemPhoneNumberLabel.textColor = themeColor.lowerCardTextColor
+        
+        // Static labels for attributes.
+        containerView.hoursLabel.textColor = themeColor.lowerCardTextColor
+        
+        containerView.phoneNumberLabel.textColor = themeColor.lowerCardTextColor
     }
 }
 

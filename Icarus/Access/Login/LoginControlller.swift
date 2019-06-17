@@ -27,19 +27,21 @@ class LoginController {
     
     // MARK: - Methods
     func tryToLogin() {
-        
+        view.startSpinner()
         guard let eml = view.loginEmailInput.text else { return }
         guard let pwd = view.loginPasswordInput.text else { return }
-        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc:UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "Main")
+        let storyboard:UIStoryboard = UIStoryboard(name: "DashboardStoryboard", bundle: nil)
+        let vc:UIViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
 
         if eml.count >= 5 && pwd.count >= 6 {
             
             fbAuth.signIn(withEmail: eml, password: pwd, completion: {(user, error) in
                 if error != nil {
+                    self.view.stopSpinner()
                     self.alert.showAlertOnVC(targetVC: self.view, title: "Login Fallido", message: "El correo o la contraseñan no coinciden, intentanlo de nuevo.")
                 } else {
-                    self.view.present(vc, animated: true, completion: nil)
+                    self.view.stopSpinner()
+                    self.view.present(vc, animated: false, completion: nil)
                 }
             })
             

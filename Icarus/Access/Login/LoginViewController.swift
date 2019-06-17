@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RSLoadingView
 
 class LoginViewController: UIViewController {
     
@@ -33,6 +34,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        RSLoadingView.hide(from: view)
         loginController = LoginController.init(loginViewController: self)
     }
     
@@ -52,6 +54,21 @@ class LoginViewController: UIViewController {
     //  - RecoverPassword actions
     @IBAction func recoverPasswordSendEmailTapped(_ sender: UIButton) {
         loginController.tryToRecoverPassword()
+    }
+    
+    func startSpinner() {
+        let loadingView = RSLoadingView(effectType: RSLoadingView.Effect.twins)
+        loadingView.mainColor = .cyan
+        loadingView.shouldDimBackground = true
+        loadingView.dimBackgroundColor = UIColor.black.withAlphaComponent(0.6)
+        loadingView.isBlocking = true
+        loadingView.shouldTapToDismiss = false
+        loadingView.show(on: view)
+    }
+    
+    // Funcion Custom spinner stop indications
+    func stopSpinner() {
+        RSLoadingView.hide(from: view)
     }
     
     

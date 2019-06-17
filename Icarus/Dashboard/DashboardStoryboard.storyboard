@@ -17,7 +17,7 @@
         <!--Profile View Controller-->
         <scene sceneID="EbX-Q1-8xo">
             <objects>
-                <viewController id="ZAR-2R-PmB" customClass="ProfileViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="ZAR-2R-PmB" customClass="ProfileViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FHU-FX-8Rn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,20 +34,24 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W91-c4-BEB" userLabel="Picture">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="187"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userColor" translatesAutoresizingMaskIntoConstraints="NO" id="92f-in-2Ix">
-                                                                <rect key="frame" x="84" y="0.0" width="132" height="132"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="132" id="9yC-ZV-j3Y"/>
-                                                                    <constraint firstAttribute="width" secondItem="92f-in-2Ix" secondAttribute="height" multiplier="1:1" id="dpZ-Ng-n5d"/>
-                                                                    <constraint firstAttribute="height" constant="132" id="i2N-5M-qkc"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1998nitai@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tww-ts-vUS">
                                                                 <rect key="frame" x="67.5" y="152" width="165" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userColor" translatesAutoresizingMaskIntoConstraints="NO" id="92f-in-2Ix">
+                                                                <rect key="frame" x="84" y="0.0" width="132" height="132"/>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="132" id="9yC-ZV-j3Y"/>
+                                                                    <constraint firstAttribute="width" secondItem="92f-in-2Ix" secondAttribute="height" multiplier="1:1" id="dpZ-Ng-n5d"/>
+                                                                    <constraint firstAttribute="height" constant="132" id="i2N-5M-qkc"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="qYZ-so-XnG" appends="YES" id="ixM-SH-Bmx"/>
+                                                                </connections>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -95,6 +99,9 @@
                                                             <constraint firstAttribute="height" constant="32" id="ee2-8h-Vbi"/>
                                                         </constraints>
                                                         <state key="normal" image="floppy-disk"/>
+                                                        <connections>
+                                                            <action selector="save:" destination="ZAR-2R-PmB" eventType="touchUpInside" id="723-Gi-3aZ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,12 +135,15 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ica-kP-u6E" userLabel="LogOutButton">
-                                                <rect key="frame" x="258" y="42" width="32" height="32"/>
+                                                <rect key="frame" x="266" y="42" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="Hqi-2x-fRF"/>
-                                                    <constraint firstAttribute="height" constant="32" id="JW9-Mh-GyG"/>
+                                                    <constraint firstAttribute="width" constant="24" id="Hqi-2x-fRF"/>
+                                                    <constraint firstAttribute="height" constant="24" id="JW9-Mh-GyG"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="logout"/>
+                                                <connections>
+                                                    <action selector="logout:" destination="ZAR-2R-PmB" eventType="touchUpInside" id="ZhJ-tw-sDg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,20 +180,25 @@
                     <connections>
                         <outlet property="cityInput" destination="lgE-Y5-gmP" id="ga1-9e-LqQ"/>
                         <outlet property="nameInput" destination="P4I-f8-cVW" id="ACI-TT-e9q"/>
-                        <outlet property="profielImage" destination="92f-in-2Ix" id="3qM-Ci-Dto"/>
+                        <outlet property="profileImage" destination="92f-in-2Ix" id="bOD-vV-fv4"/>
                         <outlet property="saveButton" destination="M8k-l7-0tY" id="wMy-tz-waX"/>
                         <outlet property="sentenceInput" destination="9sE-1e-K7a" id="4uI-t2-0QX"/>
                         <outlet property="usrAccount" destination="tww-ts-vUS" id="zN4-xg-upj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-aw-Twz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qYZ-so-XnG">
+                    <connections>
+                        <action selector="pickerImage:" destination="ZAR-2R-PmB" id="2EN-fu-HqL"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1058.4000000000001" y="223.53823088455775"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="7DX-QH-y5a">
             <objects>
-                <viewController id="XQl-Dn-rxT" customClass="MainViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Dashboard" id="XQl-Dn-rxT" customClass="MainViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Iq-T0-BpV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,7 +219,7 @@
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ZAR-2R-PmB" kind="show" id="KmE-MJ-e68"/>
+                                                    <action selector="onProfilePressed:" destination="XQl-Dn-rxT" eventType="touchUpInside" id="dBj-Lt-ed1"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOP-oD-nwW">
@@ -215,7 +230,7 @@
                                                 </constraints>
                                                 <state key="normal" image="distance"/>
                                                 <connections>
-                                                    <segue destination="yRa-26-yd8" kind="show" id="9K3-Vb-fKt"/>
+                                                    <action selector="onRoutesPressed:" destination="XQl-Dn-rxT" eventType="touchUpInside" id="jqW-Xy-Xh9"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ICARUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-0I-ksg">
@@ -395,9 +410,6 @@
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyK-rc-Zwu">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
-                                                        <connections>
-                                                            <segue destination="fHI-q8-tFQ" kind="embed" id="3o9-KM-nzv"/>
-                                                        </connections>
                                                     </containerView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.35111889239999999" green="0.61791986229999996" blue="0.67883163690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -452,11 +464,16 @@
                     </view>
                     <connections>
                         <outlet property="kmCircle" destination="Dlr-d1-std" id="BMd-AS-D6G"/>
+                        <outlet property="kmLabel" destination="Slf-ny-ofr" id="Ixc-g0-lth"/>
                         <outlet property="kmNumber" destination="Slf-ny-ofr" id="hEp-cf-BLC"/>
                         <outlet property="minCircle" destination="bvp-wa-4Ud" id="cQS-5G-1bj"/>
+                        <outlet property="minLabel" destination="JMi-S4-bnK" id="Sbk-pR-Qzz"/>
                         <outlet property="minNumber" destination="JMi-S4-bnK" id="hhZ-FL-vfq"/>
                         <outlet property="routesCircle" destination="MlS-XF-BnT" id="PdK-1t-Jqn"/>
+                        <outlet property="routesLabel" destination="Zd2-XM-RUU" id="sdf-KK-it6"/>
                         <outlet property="routesNumber" destination="Zd2-XM-RUU" id="BbZ-Hb-xgJ"/>
+                        <outlet property="tableVIew" destination="wyK-rc-Zwu" id="uYO-2L-yZg"/>
+                        <outlet property="tusRutasLabel" destination="WBg-7b-rpd" id="mJL-yO-lE6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcb-CX-cR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,17 +483,17 @@
         <!--MapStoryboard-->
         <scene sceneID="I4u-P3-JzJ">
             <objects>
-                <viewControllerPlaceholder storyboardName="MapStoryboard" id="yRa-26-yd8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mz4-lD-WPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="MapStoryboard" id="yRa-26-yd8" sceneMemberID="viewController"/>
             </objects>
-            <point key="canvasLocation" x="404" y="-40"/>
+            <point key="canvasLocation" x="309" y="-35"/>
         </scene>
         <!--Theme Picker View Controller-->
         <scene sceneID="F6E-Bg-wXS">
             <objects>
-                <tableViewController id="fHI-q8-tFQ" customClass="ThemePickerViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableView" id="fHI-q8-tFQ" customClass="ThemePickerViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="WfZ-sc-j5F">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -489,9 +506,6 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="moY-MP-Ep7">
                                             <rect key="frame" x="0.0" y="11" width="375" height="78"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_unselected_bike" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-84-q22" userLabel="Marker Image">
-                                            <rect key="frame" x="256" y="16" width="68" height="68"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeM-od-w7b">
                                             <rect key="frame" x="0.0" y="25" width="225" height="50"/>
@@ -509,6 +523,10 @@
                                                 <constraint firstItem="wn1-0g-xNO" firstAttribute="centerY" secondItem="yeM-od-w7b" secondAttribute="centerY" id="TVe-pB-aIh"/>
                                             </constraints>
                                         </view>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_unselected_bike" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-84-q22" userLabel="Marker Image">
+                                            <rect key="frame" x="256" y="16" width="68" height="68"/>
+                                            <gestureRecognizers/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="yeM-od-w7b" firstAttribute="height" secondItem="DSM-6u-J7A" secondAttribute="height" multiplier="0.5" id="3Ll-I1-bhH"/>
@@ -524,6 +542,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="routeDirection" destination="wn1-0g-xNO" id="5yH-oC-nU6"/>
                                     <outlet property="themeImageView" destination="moY-MP-Ep7" id="qWp-uJ-hjH"/>
                                     <outlet property="themeMarkerImageView" destination="y4x-84-q22" id="SBJ-2a-7kh"/>
                                 </connections>

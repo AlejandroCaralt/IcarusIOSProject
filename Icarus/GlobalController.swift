@@ -30,6 +30,7 @@ class GlobalController {
         targetVC.present(alert, animated: true, completion: nil)
     }
     
+    
 }
 
 struct RouteHistoric {
@@ -61,5 +62,29 @@ class FirebaseUser {
         self.km = km
         self.routesDone = routesDone
     }
+   
+}
+
+struct FirebaseRoute {
+    var routeCoordinates: [GeoPoint?]!
+    var km: Double!
+    var owner: String!
+    var highestPoint: Double!
+    var lowestPoint: Double!
+    var time: Double!
+    var typeRoute: String!
+    var name: String!
+    
+    init(routeCoordinates: [GeoPoint], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String) {
+        self.routeCoordinates = routeCoordinates
+        self.km = km
+        self.owner = owner
+        self.highestPoint = highestPoint
+        self.lowestPoint = lowestPoint
+        self.time = time
+        self.typeRoute = typeRoute
+        self.name = name
+    }
+    
 }
 
