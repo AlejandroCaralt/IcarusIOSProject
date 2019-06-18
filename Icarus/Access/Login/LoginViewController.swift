@@ -34,7 +34,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        RSLoadingView.hide(from: view)
         loginController = LoginController.init(loginViewController: self)
     }
     

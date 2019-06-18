@@ -10,13 +10,13 @@ target 'Icarus' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  pod 'RSLoadingView'
-  pod 'GoogleSignIn'
-  pod 'Kingfisher'
-  pod 'Mapbox-iOS-SDK'
-  pod 'MapboxNavigation'
-  pod 'MapboxDirections.swift'
-
+  pod 'RSLoadingView', '1.1.1'
+  pod 'Kingfisher', '5.4.0'
+  pod 'Mapbox-iOS-SDK', '~> 4.0'
+  pod 'MapboxDirections.swift', '0.27.0'
+  pod 'MapboxCoreNavigation', '0.30.0'
+  pod 'MapboxNavigation', '0.30.0'
+  
   target 'IcarusTests' do
     inherit! :search_paths
     # Pods for testing
@@ -25,6 +25,14 @@ target 'Icarus' do
   target 'IcarusUITests' do
     inherit! :search_paths
     # Pods for testing
+  end
+  
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
+    end
   end
 
 end

@@ -26,7 +26,6 @@
 		2297BA122264CB43003EFDF2 /* IcarusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA112264CB43003EFDF2 /* IcarusUITests.swift */; };
 		2297BA212264CBCA003EFDF2 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2297BA202264CBCA003EFDF2 /* LoginStoryboard.storyboard */; };
 		2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA222264CBFE003EFDF2 /* LoginViewController.swift */; };
-		2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA992268BA7A00D96631 /* FirebaseController.swift */; };
 		2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2297BA9B2268C10700D96631 /* LoginControlller.swift */; };
 		22B0B9CC22B7528B0000E79E /* CreateRouteStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22B0B9CB22B7528B0000E79E /* CreateRouteStoryboard.storyboard */; };
 		22B0B9CE22B7540F0000E79E /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0B9CD22B7540F0000E79E /* CreateRouteViewController.swift */; };
@@ -88,7 +87,6 @@
 		2297BA132264CB43003EFDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2297BA202264CBCA003EFDF2 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		2297BA222264CBFE003EFDF2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2297BA992268BA7A00D96631 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		2297BA9B2268C10700D96631 /* LoginControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControlller.swift; sourceTree = "<group>"; };
 		22B0B9CB22B7528B0000E79E /* CreateRouteStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateRouteStoryboard.storyboard; sourceTree = "<group>"; };
 		22B0B9CD22B7540F0000E79E /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				2297B9FD2264CB43003EFDF2 /* Info.plist */,
 				22D74D172265D4FA00BE303F /* GoogleService-Info.plist */,
 				22FD15AA226F5B8700034121 /* GlobalController.swift */,
-				2297BA992268BA7A00D96631 /* FirebaseController.swift */,
 				221DC82E2278A31700D1A0C6 /* UserController.swift */,
 			);
 			path = Icarus;
@@ -332,7 +329,6 @@
 				2297B9EB2264CB41003EFDF2 /* Frameworks */,
 				2297B9EC2264CB41003EFDF2 /* Resources */,
 				F21F89CCA9BFF8DDE0321323 /* [CP] Embed Pods Frameworks */,
-				2CE1115443901185302000A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -467,28 +463,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CE1115443901185302000A1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6E9179490EF24AE8BB8A5F9D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,7 +540,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Icarus/Pods-Icarus-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
@@ -575,6 +548,8 @@
 				"${BUILT_PRODUCTS_DIR}/MapboxDirections.swift/MapboxDirections.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxMobileEvents/MapboxMobileEvents.framework",
 				"${BUILT_PRODUCTS_DIR}/MapboxNavigation/MapboxNavigation.framework",
+				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework",
+				"${PODS_ROOT}/MapboxNavigationNative/MapboxNavigationNative.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/MapboxSpeech/MapboxSpeech.framework",
 				"${BUILT_PRODUCTS_DIR}/Polyline/Polyline.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -592,7 +567,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
@@ -601,6 +575,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxDirections.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxMobileEvents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxNavigationNative.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/MapboxNavigationNative.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapboxSpeech.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Polyline.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -635,7 +611,6 @@
 				22FFD2292296C73000F9CABA /* MainMapViewController.swift in Sources */,
 				22005181229EBEB300D3A672 /* StoreLocatorViewController.swift in Sources */,
 				226B6DAB22AFDE49006A76A5 /* MainViewController.swift in Sources */,
-				2297BA9A2268BA7A00D96631 /* FirebaseController.swift in Sources */,
 				22D00C11226F135200541900 /* RegisterController.swift in Sources */,
 				2297BA9C2268C10700D96631 /* LoginControlller.swift in Sources */,
 				22FD15AB226F5B8700034121 /* GlobalController.swift in Sources */,
@@ -825,7 +800,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alejandrocaralt.Icarus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -844,7 +819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alejandrocaralt.Icarus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

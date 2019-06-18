@@ -9,6 +9,7 @@
 import UIKit
 import Mapbox
 import Firebase
+import FirebaseFirestore
 
 class MainMapViewController: UIViewController, MGLMapViewDelegate {
 

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 import RSLoadingView
 import Kingfisher
 
@@ -83,7 +84,14 @@ class ProfileViewController: UIViewController {
         let storageRef = Storage.storage().reference()
         let photoName = "\(Auth.auth().currentUser!.uid)"
         let imageRef = storageRef.child("usersProfilePicture/\(photoName).jpeg")
-        let imgData = self.profileImage.image?.jpegData(compressionQuality: 0.2)
+        guard let img = self.profileImage.image else {
+            print("Imagen nula")
+            return
+            
+        }
+        let imgData = UIImageJPEGRepresentation(img, 0.2)
+        
+
         
         let medaData = StorageMetadata()
         medaData.contentType = "image/jpeg"
@@ -113,8 +121,12 @@ class ProfileViewController: UIViewController {
             changeRequest!.photoURL = url
             changeRequest!.commitChanges { error in
                 if let _ = error {
+                    
+                    self.stopSpinner()
                     print("Try Again")
                 } else {
+                    
+                    self.stopSpinner()
                     print("Photo Updated")
                 }
             }
@@ -211,10 +223,12 @@ extension ProfileViewController: UITextFieldDelegate, UIImagePickerControllerDel
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        
         
         // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         

@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import CoreLocation
+import FirebaseFirestore
 
 class GlobalController {
     
@@ -33,16 +35,6 @@ class GlobalController {
     
 }
 
-struct RouteHistoric {
-    var records: [RouteRecord]!
-    
-}
-struct RouteRecord {
-    var date: Timestamp!
-    var time: Double!
-    
-}
-
 class FirebaseUser {
     var name: String!
     var city: String!
@@ -50,8 +42,6 @@ class FirebaseUser {
     var hours: Double!
     var km: Double!
     var routesDone: Double!
-    
-    var routeHistoric: [(String, RouteRecord)]?
     
     
     init(name: String, city: String, sentence: String, hours: Double, km: Double, routesDone: Double) {
@@ -66,7 +56,7 @@ class FirebaseUser {
 }
 
 struct FirebaseRoute {
-    var routeCoordinates: [GeoPoint?]!
+    var routeCoordinates: [CLLocationCoordinate2D]!
     var km: Double!
     var owner: String!
     var highestPoint: Double!
@@ -75,8 +65,11 @@ struct FirebaseRoute {
     var typeRoute: String!
     var name: String!
     var id: String!
+    var startPoint: CLLocationCoordinate2D!
     
-    init(routeCoordinates: [GeoPoint], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String, id: String) {
+    init() { }
+    
+    init(routeCoordinates: [CLLocationCoordinate2D], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String, id: String) {
         self.routeCoordinates = routeCoordinates
         self.km = km
         self.owner = owner
@@ -86,6 +79,7 @@ struct FirebaseRoute {
         self.typeRoute = typeRoute
         self.name = name
         self.id = id
+        self.startPoint = CLLocationCoordinate2D(latitude: routeCoordinates[0].latitude, longitude: routeCoordinates[0].longitude)
     }
     
 }

@@ -11,6 +11,7 @@ import Mapbox
 import MapboxDirections
 import RSLoadingView
 import Firebase
+import FirebaseFirestore
 
 class MainViewController: UIViewController {
     
@@ -41,8 +42,6 @@ class MainViewController: UIViewController {
         self.ownRoutes = []
         getData()
         
-        
-        RSLoadingView.hide(from: view)
         
 //        // Conditional for "Tus rutas" label when user doestn have one
 //        if ownRoutes.count == 0 {
@@ -118,7 +117,7 @@ class MainViewController: UIViewController {
                 let km = document["km"] as! Double
                 let lowestPoint = document["lowestPoint"] as! Double
                 let owner = document["owner"] as! String
-                let routeCoordinates = document["routeCoordinates"] as! [GeoPoint]
+                let routeCoordinates = document["routeCoordinates"] as! [CLLocationCoordinate2D]
                 let time = document["time"] as! Double
                 let typeRoute = document["typeRoute"] as! String
                 let name = document["name"] as! String
@@ -134,10 +133,7 @@ class MainViewController: UIViewController {
                 
             }
             
-        }
-        
-        // Getting all the routes
-    
+        }    
         
     }
     
@@ -147,13 +143,13 @@ class MainViewController: UIViewController {
         }
         
         childVC.ownRoutes = routes
-        addChild(childVC)
+        addChildViewController(childVC)
         //Or, you could add auto layout constraint instead of relying on AutoResizing contraints
         childVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         childVC.view.frame = self.tableVIew.bounds
         
         tableVIew.addSubview(childVC.view)
-        childVC.didMove(toParent: self)
+        childVC.didMove(toParentViewController: self)
         
     }
     
@@ -245,15 +241,7 @@ class ThemePickerViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "MapStoryboard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MainRouteMap") as! MainMapViewController
         let coordinates = self.ownRoutes![indexPath.row]?.routeCoordinates
-        var CLLocationCoordinates: [CLLocationCoordinate2D] = []
-        for point in coordinates! {
-            guard let lat = point?.latitude else { return }
-            guard let lon = point?.longitude else { return }
-            
-            let cll2d = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            CLLocationCoordinates.append(cll2d)
-        }
-        vc.allCoordinates = CLLocationCoordinates
+        vc.allCoordinates = coordinates
         vc.route = self.ownRoutes![indexPath.row]
         self.present(vc, animated: true, completion: nil)
     }
