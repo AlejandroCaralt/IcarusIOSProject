@@ -5,6 +5,7 @@
 //  Created by MacOS on 23/04/2019.
 //  Copyright © 2019 MacOS. All rights reserved.
 //
+import Foundation
 
 import UIKit
 import Firebase
@@ -55,7 +56,7 @@ class FirebaseUser {
    
 }
 
-struct FirebaseRoute {
+struct FirebaseRoute: Codable {
     var routeCoordinates: [CLLocationCoordinate2D]!
     var km: Double!
     var owner: String!
@@ -82,5 +83,23 @@ struct FirebaseRoute {
         self.startPoint = CLLocationCoordinate2D(latitude: routeCoordinates[0].latitude, longitude: routeCoordinates[0].longitude)
     }
     
+    
 }
+
+class RoutePoint: Codable {
+    var type: String!
+    var geometry: geometry!
+    var properties: properties!
+}
+
+struct properties: Codable {
+    var name: String!
+    var featureclass: String!
+}
+
+struct geometry: Codable {
+    var type: String!
+    var coordinates: [Double]!
+}
+
 

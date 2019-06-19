@@ -10,6 +10,9 @@
 		22005181229EBEB300D3A672 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */; };
 		22005183229EBEF300D3A672 /* stores.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 22005182229EBEF300D3A672 /* stores.geojson */; };
 		22005185229EBEFC00D3A672 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22005184229EBEFC00D3A672 /* Themes.swift */; };
+		2201F82222B99450008252C2 /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2201F82122B99450008252C2 /* RouteMapViewController.swift */; };
+		2201F82522B99786008252C2 /* ports.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2201F82322B99786008252C2 /* ports.geojson */; };
+		2201F82622B99786008252C2 /* clustering.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2201F82422B99786008252C2 /* clustering.xcassets */; };
 		221DC82F2278A31700D1A0C6 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221DC82E2278A31700D1A0C6 /* UserController.swift */; };
 		223F3B2222AE4AF50020BFA0 /* CustomItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */; };
 		226B6DA922AFDDF2006A76A5 /* DashboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */; };
@@ -65,6 +68,9 @@
 		22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
 		22005182229EBEF300D3A672 /* stores.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stores.geojson; path = "../../store-locator-ios-master/mapbox-store-locator/stores.geojson"; sourceTree = "<group>"; };
 		22005184229EBEFC00D3A672 /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Themes.swift; path = "../../store-locator-ios-master/mapbox-store-locator/Themes.swift"; sourceTree = "<group>"; };
+		2201F82122B99450008252C2 /* RouteMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
+		2201F82322B99786008252C2 /* ports.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ports.geojson; path = ../../clustering/ports.geojson; sourceTree = "<group>"; };
+		2201F82422B99786008252C2 /* clustering.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = clustering.xcassets; path = ../../clustering/clustering.xcassets; sourceTree = "<group>"; };
 		221DC82E2278A31700D1A0C6 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomItemView.xib; path = "../../../../store-locator-ios-master/mapbox-store-locator/CustomItemView.xib"; sourceTree = "<group>"; };
 		226B6DA822AFDDF2006A76A5 /* DashboardStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardStoryboard.storyboard; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 		2297B9F02264CB41003EFDF2 /* Icarus */ = {
 			isa = PBXGroup;
 			children = (
+				2201F82322B99786008252C2 /* ports.geojson */,
 				22005182229EBEF300D3A672 /* stores.geojson */,
 				22005184229EBEFC00D3A672 /* Themes.swift */,
 				2297B9F12264CB41003EFDF2 /* AppDelegate.swift */,
@@ -218,6 +225,7 @@
 				226B6DA522AFDDA3006A76A5 /* Dashboard */,
 				22FFD2242296C42B00F9CABA /* Map */,
 				2297B9F82264CB43003EFDF2 /* Assets.xcassets */,
+				2201F82422B99786008252C2 /* clustering.xcassets */,
 				2297B9FA2264CB43003EFDF2 /* LaunchScreen.storyboard */,
 				2297B9FD2264CB43003EFDF2 /* Info.plist */,
 				22D74D172265D4FA00BE303F /* GoogleService-Info.plist */,
@@ -290,6 +298,7 @@
 				223F3B2122AE4AF50020BFA0 /* CustomItemView.xib */,
 				22FFD2282296C73000F9CABA /* MainMapViewController.swift */,
 				22005180229EBEB300D3A672 /* StoreLocatorViewController.swift */,
+				2201F82122B99450008252C2 /* RouteMapViewController.swift */,
 			);
 			path = MainMap;
 			sourceTree = "<group>";
@@ -430,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2201F82522B99786008252C2 /* ports.geojson in Resources */,
 				2297B9FC2264CB43003EFDF2 /* LaunchScreen.storyboard in Resources */,
 				223F3B2222AE4AF50020BFA0 /* CustomItemView.xib in Resources */,
 				2297B9F92264CB43003EFDF2 /* Assets.xcassets in Resources */,
@@ -441,6 +451,7 @@
 				22B0B9CC22B7528B0000E79E /* CreateRouteStoryboard.storyboard in Resources */,
 				22FFD2272296C61D00F9CABA /* MapStoryboard.storyboard in Resources */,
 				22005183229EBEF300D3A672 /* stores.geojson in Resources */,
+				2201F82622B99786008252C2 /* clustering.xcassets in Resources */,
 				2297B9F72264CB41003EFDF2 /* Main.storyboard in Resources */,
 				2297BA212264CBCA003EFDF2 /* LoginStoryboard.storyboard in Resources */,
 			);
@@ -603,6 +614,7 @@
 				221DC82F2278A31700D1A0C6 /* UserController.swift in Sources */,
 				22005185229EBEFC00D3A672 /* Themes.swift in Sources */,
 				2297BA232264CBFE003EFDF2 /* LoginViewController.swift in Sources */,
+				2201F82222B99450008252C2 /* RouteMapViewController.swift in Sources */,
 				2297B9F42264CB41003EFDF2 /* ViewController.swift in Sources */,
 				22B0B9CE22B7540F0000E79E /* CreateRouteViewController.swift in Sources */,
 				226B6DAD22AFDE56006A76A5 /* MainController.swift in Sources */,

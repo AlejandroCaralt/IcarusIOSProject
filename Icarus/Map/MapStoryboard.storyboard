@@ -9,26 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Store Locator View Controller-->
+        <!--Routes Map View Controller-->
         <scene sceneID="6oY-54-zus">
             <objects>
-                <viewController storyboardIdentifier="StoreLocatorMap" id="ShU-e1-lHo" customClass="StoreLocatorViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoreLocatorMap" id="ShU-e1-lHo" customClass="RoutesMapViewController" customModule="Icarus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gyu-XB-FN2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8P-PN-bcU" userLabel="MapView" customClass="MGLMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="A8P-PN-bcU" firstAttribute="width" secondItem="rEz-JN-FOg" secondAttribute="width" id="9qG-T0-mMI"/>
-                            <constraint firstItem="A8P-PN-bcU" firstAttribute="centerX" secondItem="gyu-XB-FN2" secondAttribute="centerX" id="Dr9-1b-4Do"/>
-                            <constraint firstItem="A8P-PN-bcU" firstAttribute="height" secondItem="gyu-XB-FN2" secondAttribute="height" id="Y8I-sT-aBM"/>
-                            <constraint firstItem="A8P-PN-bcU" firstAttribute="centerY" secondItem="gyu-XB-FN2" secondAttribute="centerY" id="rnh-L0-GWT"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rEz-JN-FOg"/>
                     </view>
                 </viewController>
