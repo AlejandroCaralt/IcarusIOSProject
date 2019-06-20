@@ -33,20 +33,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var tusRutasLabel: UILabel!
     
     @IBOutlet weak var tableVIew: UIView!
-    var ownRoutes: [FirebaseRoute?]!
+    var ownRoutes: [FirebaseRoute]! = []
+    var allRoutes: [FirebaseRoute]! = []
+    var allRouteFeatures: [MGLShape]! = []
 
     var firebaseUser: FirebaseUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ownRoutes = []
-        getData()
-        
-        
-//        // Conditional for "Tus rutas" label when user doestn have one
-//        if ownRoutes.count == 0 {
-//            tusRutasLabel.text = "¡Haz tu propia Ruta!"
-//        }
+        self.onSetUp()
         
     }
     
@@ -56,89 +51,132 @@ class MainViewController: UIViewController {
         self.routesCircle.layer.cornerRadius = self.routesCircle.bounds.width / 2
         self.routesCircle.layer.borderWidth = 4
         self.routesCircle.layer.borderColor = UIColor.black.withAlphaComponent(0.7).cgColor
-        self.routesLabel.text = String(self.firebaseUser.routesDone)
+        self.routesLabel.text = String(format: "%.0f", self.firebaseUser.routesDone)
         
         self.kmCircle.layer.cornerRadius = self.kmCircle.bounds.width / 2
         self.kmCircle.layer.borderWidth = 5
         self.kmCircle.layer.borderColor =  UIColor.black.withAlphaComponent(0.7).cgColor
-        self.kmLabel.text = String(self.firebaseUser.km)
+        self.kmLabel.text = String(format: "%.2f", self.firebaseUser.km)
 
         
         self.minCircle.layer.cornerRadius = self.minCircle.bounds.width / 2
         self.minCircle.layer.borderWidth = 4
         self.minCircle.layer.borderColor =  UIColor.black.withAlphaComponent(0.7).cgColor
-        self.minLabel.text = String(self.firebaseUser.hours)
+        self.minLabel.text = String(format: "%.2f", self.firebaseUser.hours)
 
     }
     
+    func onSetUp() {
+
+        let db = Firestore.firestore()
+        let userID = String(Auth.auth().currentUser!.uid)
+        
+        DispatchQueue.main.async {
+            // Getting user data
+            db.collection("users").document(userID).addSnapshotListener { (snapshot, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
+                
+                if let data = snapshot?.data() {
+                    let name = data["name"] as! String
+                    let hours = data["hours"] as! Double
+                    let km = data["km"] as! Double
+                    let city = data["city"] as! String
+                    let routesDone = data["routesDone"] as! Double
+                    let sentence = data["sentence"] as! String
+                    
+                    self.firebaseUser = FirebaseUser(name: name, city: city, sentence: sentence, hours: hours, km: km, routesDone: routesDone)
+                }
+                self.putDashboardStyle()
+                
+            }
+            
+        }
+
+    }
     func getData() {
-        startSpinner()
         
         let db = Firestore.firestore()
         let userID = String(Auth.auth().currentUser!.uid)
         
-        // Getting user data
-        db.collection("users").document(userID).addSnapshotListener { (snapshot, error) in
-            if let err = error {
-                print(err.localizedDescription)
-                return
-            }
-            
-            if let data = snapshot?.data() {
-                print(data)
-                let name = data["name"] as! String
-                let hours = data["hours"] as! Double
-                let km = data["km"] as! Double
-                let city = data["city"] as! String
-                let routesDone = data["routesDone"] as! Double
-                let sentence = data["sentence"] as! String
+        DispatchQueue.main.async {
+            // Getting user data
+            db.collection("users").document(userID).addSnapshotListener { (snapshot, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
                 
-                self.firebaseUser = FirebaseUser(name: name, city: city, sentence: sentence, hours: hours, km: km, routesDone: routesDone)
-            }
-            self.stopSpinner()
-            self.putDashboardStyle()
-        }
-        
-        
-        // Getting users route data
-        db.collection("routes").whereField("owner", isEqualTo: userID).getDocuments() { (snapshot, error) in
-            if let err = error {
-                print(err.localizedDescription)
-                return
-            }
-            var index = 0
-            
-            for document in snapshot!.documents {
-                
-                index += 1
-                print("\(document.documentID) => \(document.data())")
-                
-                let highestPoint = document["highestPoint"] as! Double
-                let km = document["km"] as! Double
-                let lowestPoint = document["lowestPoint"] as! Double
-                let owner = document["owner"] as! String
-                let routeCoordinates = document["routeCoordinates"] as! [CLLocationCoordinate2D]
-                let time = document["time"] as! Double
-                let typeRoute = document["typeRoute"] as! String
-                let name = document["name"] as! String
-                let id = document.documentID
-                
-                let route: FirebaseRoute = FirebaseRoute(routeCoordinates: routeCoordinates, km: km, owner: owner, highestPoint: highestPoint, lowestPoint: lowestPoint, time: time, typeRoute: typeRoute, name: name, id: id)
-                
-                self.ownRoutes.append(route)
-                
-                if index == snapshot!.documents.count{
-                    self.tableViewInstantiate(routes: self.ownRoutes as! [FirebaseRoute])
+                if let data = snapshot?.data() {
+                    let name = data["name"] as! String
+                    let hours = data["hours"] as! Double
+                    let km = data["km"] as! Double
+                    let city = data["city"] as! String
+                    let routesDone = data["routesDone"] as! Double
+                    let sentence = data["sentence"] as! String
+                    
+                    self.firebaseUser = FirebaseUser(name: name, city: city, sentence: sentence, hours: hours, km: km, routesDone: routesDone)
                 }
                 
             }
             
-        }    
+        }
+        
+        
+    }
+    
+    func getUserRouteData() {
+        // Getting users route data
+        
+        let db = Firestore.firestore()
+        let userID = String(Auth.auth().currentUser!.uid)
+        
+        DispatchQueue.main.async {
+            db.collection("routes").whereField("owner", isEqualTo: userID).getDocuments() { (snapshot, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
+                var index = 0
+                
+                for document in snapshot!.documents {
+                    
+                    index += 1
+                    print("\(document.documentID) => \(document.data())")
+                    
+                    let highestPoint = document["highestPoint"] as! Double
+                    let km = document["km"] as! Double
+                    let lowestPoint = document["lowestPoint"] as! Double
+                    let owner = document["owner"] as! String
+                    let routeCoordinates = document["routesCoordinates"] as! [GeoPoint]
+                    let time = document["time"] as! Double
+                    let typeRoute = document["typeRoute"] as! String
+                    let name = document["name"] as! String
+                    let id = document.documentID
+                    
+                    let route: FirebaseRoute = FirebaseRoute(routeCoordinates: routeCoordinates, km: km, owner: owner, highestPoint: highestPoint, lowestPoint: lowestPoint, time: time, typeRoute: typeRoute, name: name, id: id)
+                    
+                    self.ownRoutes.append(route)
+                    
+                    
+                }
+                // Conditional for "Tus rutas" label when user doestn have one
+                if self.ownRoutes.count == 0 {
+                    self.tusRutasLabel.text = "¡Haz tu propia Ruta!"
+                }
+                
+                self.tableViewInstantiate(routes: self.ownRoutes as! [FirebaseRoute])
+                
+            }
+            
+        }
         
     }
     
     func tableViewInstantiate(routes: [FirebaseRoute]) {
-        guard let childVC = self.storyboard?.instantiateViewController(withIdentifier: "TableView") as? ThemePickerViewController else {
+        guard let childVC = self.storyboard?.instantiateViewController(withIdentifier: "TableView") as? RouteTableViewController else {
             return
         }
         
@@ -156,7 +194,10 @@ class MainViewController: UIViewController {
     
     @IBAction func onRoutesPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "MapStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "StoreLocatorMap")
+        let vc = storyboard.instantiateViewController(withIdentifier: "StoreLocatorMap") as! StoreLocatorViewController
+        vc.allRoutes = self.allRoutes
+        vc.allRouteFeatures = self.allRouteFeatures
+        vc.user = self.firebaseUser
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -164,6 +205,27 @@ class MainViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         vc.user = self.firebaseUser
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: Instantiate GeoJson objects
+    func objectToGeojson() {
+        var index = 0
+        for n in allRoutes {
+            
+            let coord = [n.startPoint.latitude, n.startPoint.longitude]
+            let nam = n.name
+            
+            let route = RoutePoint(geometry: geometry(coordinates: coord), properties: properties(name: nam!, index: index))
+            
+            let jsonData = try! JSONEncoder().encode(route)
+            let data: Data = jsonData
+            let shape = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue)
+            
+            self.allRouteFeatures.append(shape)
+            
+            index += 1
+            
+        }
     }
     
     
@@ -186,16 +248,14 @@ class MainViewController: UIViewController {
 }
 
 
-class ThemeTableViewCell: UITableViewCell {
+class RouteTableViewCell: UITableViewCell {
     @IBOutlet weak var themeImageView: UIImageView!
     @IBOutlet weak var themeMarkerImageView: UIImageView!
     @IBOutlet weak var routeDirection: UILabel!
 
 }
 
-class ThemePickerViewController: UITableViewController {
-    
-    @IBOutlet weak var themeImage: UIImageView!
+class RouteTableViewController: UITableViewController {
     
     var ownRoutes: [FirebaseRoute!]!
     
@@ -225,7 +285,7 @@ class ThemePickerViewController: UITableViewController {
         
         
         // Creating the cells
-        let cell = tableView.dequeueReusableCell(withIdentifier: "example", for: indexPath) as! ThemeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "example", for: indexPath) as! RouteTableViewCell
 
         
         cell.themeImageView = UIImageView(image: UIImage(named: "LoginBackground"))

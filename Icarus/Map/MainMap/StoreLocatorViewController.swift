@@ -5,12 +5,11 @@
 //  Created by Nadia Barbosa on 9/12/17.
 //  Copyright © 2017 Mapbox. All rights reserved.
 //
+
 import Mapbox
 import MapboxDirections
-import FirebaseFirestore
 
 class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
-    
     // Lines 14 is for the example only. Users will want to set the theme on line 38.
     
     // MARK: Customize these variables to style your map:
@@ -19,7 +18,6 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     
     var centerCoordinate = CLLocationCoordinate2D(latitude: 36.7225193, longitude: -4.4240461) // This will serve as the center coordinate if the user denies location permissions.
     var mapView: MGLMapView!
-    
     var itemView : CustomItemView! // Keeps track of the current CustomItemView.
     
     let userLocationFeature = MGLPointFeature()
@@ -32,16 +30,11 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     let uniqueIdentifier = "phone" // Replace this with the property key for a value that is unique within your data. Do not use coordinates.
     var customItemViewSize = CGRect()
     var featuresWithRoute : [String : (MGLPointFeature, [CLLocationCoordinate2D])] = [:]
+    var selectedFeature : (MGLPointFeature, [CLLocationCoordinate2D])?
     
-    
-    
-    var selectedRoute : FirebaseRoute?
-    
-    let routes: [FirebaseRoute] = [
-        FirebaseRoute(routeCoordinates: [CLLocationCoordinate2D(latitude: 36.718151, longitude: -4.424045), CLLocationCoordinate2D(latitude: 36.720132 , longitude: -4.497154)], km: 22.0, owner: "IDDELUSUARIO", highestPoint: 12.0, lowestPoint: 15.0, time: 23.0, typeRoute: "City", name: "Mock-Up", id: "IDDELARUTA") ,
-        FirebaseRoute(routeCoordinates: [CLLocationCoordinate2D(latitude: 36.718151, longitude: -4.424045), CLLocationCoordinate2D(latitude: 36.715592 , longitude: -4.433818)], km: 22.0, owner: "IDDELUSUARIO", highestPoint: 12.0, lowestPoint: 15.0, time: 23.0, typeRoute: "City", name: "Mock-Up", id: "IDDELARUTA") ,
-    ]
-    
+    var allRoutes: [FirebaseRoute]!
+    var allRouteFeatures: [MGLShape]! = []
+    var user: FirebaseUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,26 +42,31 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
             navigationController?.navigationBar.prefersLargeTitles = false
         }
         
-        // Add the mapView to the story
-        addMapView()
+        mapView = MGLMapView(frame: view.bounds, styleURL: viewControllerTheme?.styleURL) // Set the map's style url.
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.delegate = self
+        mapView.setCenter(
+            CLLocationCoordinate2D(latitude: 36.7225193, longitude: -4.4240461),
+            zoomLevel: 11,
+            animated: false)
         
-        // Add the BackButton to the story
-        addBackButton()
+        //   mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)      // MARK: To center on the user's location, comment this line out and uncomment the following line.
         
-        // Check the user localitation authorizationStatus
+        
+        
+        view.addSubview(mapView)
+        
         if CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .notDetermined {
-            mapView.setCenter(centerCoordinate, zoomLevel: 13, animated: false)
+            mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)
         }
-        
-        // Check when the map is tapped and handle it on 'handleItemTap'
         mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleItemTap(sender:))))
         
-        // Defines the Carda Size
-        customItemViewSize = CGRect(x: (mapView.bounds.width / 10) / 2  , y: mapView.bounds.height * 15 / 20, width: view.bounds.width * 9 / 10, height: view.bounds.height / 5)
+        customItemViewSize = CGRect(x: 0, y: mapView.bounds.height * 3 / 4, width: view.bounds.width, height: view.bounds.height / 4)
         
         addPageViewController()
+        addBackButton()
+        addRouteButton()
     }
-    
     
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         
@@ -83,41 +81,34 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             addUserLocationDot(to: style)
         } else {
-            mapView.setCenter(centerCoordinate, zoomLevel: 13, animated: false)
+            mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)
         }
     }
     
     func drawPointData(data: Data) {
         guard let style = mapView.style else { return }
         
-        do {
-            let feature = try MGLShape(data: data, encoding: String.Encoding.utf8.rawValue) as! MGLShapeCollectionFeature
-            
-            let source = MGLShapeSource(identifier: "store-locations", shape: feature, options: nil)
-            style.addSource(source)
-            
-            // Set the default item image.
-            style.setImage((viewControllerTheme?.defaultMarker)!, forName: "unselected_marker")
-            // Set the image for the selected item.
-            style.setImage((viewControllerTheme?.selectedMarker)!, forName: "selected_marker")
-            
-            let symbolLayer = MGLSymbolStyleLayer(identifier: "store-locations", source: source)
-            
-            symbolLayer.iconImageName = NSExpression(forConstantValue: "unselected_marker")
-            symbolLayer.iconAllowsOverlap = NSExpression(forConstantValue: 1)
-            
-            style.addLayer(symbolLayer)
-            
-            features = feature.shapes as! [MGLPointFeature]
-            if CLLocationManager.authorizationStatus() != .authorizedAlways || CLLocationManager.authorizationStatus() != .authorizedWhenInUse  {
-                populateFeaturesWithRoutes()
-            }
-            
-        } catch (let error) {
-            print("\(#function) + \(error)")
-            
+        let feature = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue) as! MGLShapeCollectionFeature
+        
+        let source = MGLShapeSource(identifier: "store-locations", shapes: self.allRouteFeatures, options: nil)
+        style.addSource(source)
+        
+        // Set the default item image.
+        style.setImage((viewControllerTheme?.defaultMarker)!, forName: "unselected_marker")
+        // Set the image for the selected item.
+        style.setImage((viewControllerTheme?.selectedMarker)!, forName: "selected_marker")
+        
+        let symbolLayer = MGLSymbolStyleLayer(identifier: "store-locations", source: source)
+        
+        symbolLayer.iconImageName = NSExpression(forConstantValue: "unselected_marker")
+        symbolLayer.iconAllowsOverlap = NSExpression(forConstantValue: 1)
+        
+        style.addLayer(symbolLayer)
+        
+        features = feature.shapes as! [MGLPointFeature]
+        if CLLocationManager.authorizationStatus() != .authorizedAlways || CLLocationManager.authorizationStatus() != .authorizedWhenInUse  {
+            populateFeaturesWithRoutes()
         }
- 
     }
     
     // MARK: Use a custom user location dot.
@@ -170,17 +161,18 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
             if mapView.visibleFeatures(at: point, styleLayerIdentifiers: layer).count > 0 && !UIDevice.current.orientation.isLandscape {
                 
                 // If there is an item at the tap's location, change the marker to the selected marker.
-                for route in routes {
-                        changeItemColor(route: route as FirebaseRoute)
-                        generateItemPages(route: route as FirebaseRoute)
-                        //
-                        //                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3.5/4)
-                        //                        mapView.frame = mapViewSize
+                for feature in mapView.visibleFeatures(at: point, styleLayerIdentifiers: layer)
+                    where feature is MGLPointFeature {
+                        changeItemColor(feature: feature)
+                        generateItemPages(feature: feature as! MGLPointFeature)
+                        
+                        let mapViewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height * 3/4)
+                        mapView.frame = mapViewSize
                         pageViewController.view.isHidden = false
                 }
             } else {
                 // If there isn't an item at the tap's location, reset the map.
-                changeItemColor(route: FirebaseRoute())
+                changeItemColor(feature: MGLPointFeature())
                 
                 if let routeLineLayer = mapView.style?.layer(withIdentifier: "route-style") {
                     routeLineLayer.isVisible = false
@@ -192,13 +184,12 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         }
     }
     
-    func changeItemColor(route : FirebaseRoute) {
+    func changeItemColor(feature: MGLFeature) {
         let layer = mapView.style?.layer(withIdentifier: "store-locations") as! MGLSymbolStyleLayer
-        
-        if self.selectedRoute!.id == route.id {
+        if let name = feature.attribute(forKey: "name") as? String {
             
             // Change the icon to the selected icon based on the feature name. If multiple items have the same name, choose an attribute that is unique.
-            layer.iconImageName = NSExpression(format: "TERNARY(name = %@, 'selected_marker', 'unselected_marker')", route.id)
+            layer.iconImageName = NSExpression(format: "TERNARY(name = %@, 'selected_marker', 'unselected_marker')", name)
             
         } else {
             // Deselect all items if no feature was selected.
@@ -226,24 +217,19 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
             }
             
             guard let route = routes?.first else { return }
-            
             routeCoordinates = route.coordinates!
-            
-            
-            // TODO: Change value to normal route
             self.featuresWithRoute[self.getKeyForFeature(feature: destination)] = (destination, routeCoordinates)
-            print(routeCoordinates)
         }
         return routeCoordinates
     }
     
     func populateFeaturesWithRoutes() {
-//        if CLLocationCoordinate2DIsValid(userLocationFeature.coordinate) {
-//            for point in features {
-//                let routeCoordinates = getRoute(from: userLocationFeature.coordinate, to: point)
-//                featuresWithRoute[getKeyForFeature(feature: point)] = (point, routeCoordinates)
-//            }
-//        }
+        if CLLocationCoordinate2DIsValid(userLocationFeature.coordinate) {
+            for point in features {
+                let routeCoordinates = getRoute(from: userLocationFeature.coordinate, to: point)
+                featuresWithRoute[getKeyForFeature(feature: point)] = (point, routeCoordinates)
+            }
+        }
     }
     
     // Draw a route line using the stored route for a feature.
@@ -280,60 +266,6 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         }
     }
     
-    // Adds the page view controller that will become the callout.
-    func addPageViewController() {
-        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        pageViewController.isDoubleSided = false
-        pageViewController.delegate = self
-        pageViewController.dataSource = self
-        pageViewController.view.frame = customItemViewSize
-        pageViewController.view.backgroundColor = viewControllerTheme?.themeColor.primaryDarkColor
-        pageViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = true
-        pageViewController.view.layer.borderWidth = 5
-        pageViewController.view.layer.borderColor = UIColor.black.withAlphaComponent(0.2).cgColor
-        view.addSubview(pageViewController.view)
-        pageViewController.view.isHidden = true
-    }
-    
-    func addMapView() {
-        mapView = MGLMapView(frame: view.bounds, styleURL: viewControllerTheme?.styleURL) // Set the map's style url.
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.delegate = self
-        mapView.setCenter(
-            CLLocationCoordinate2D(latitude: 36.7225193, longitude: -4.4240461),
-            zoomLevel: 11,
-            animated: false)
-        
-        //   mapView.setCenter(centerCoordinate, zoomLevel: 11, animated: false)      // MARK: To center on the user's location, comment this line out and uncomment the following line.
-        
-        mapView.userTrackingMode = .follow
-        
-        view.addSubview(mapView)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        
-//        let location = CLLocationManager()
-//        location.distanceFilter = 100.0
-//        location.startMonitoringSignificantLocationChanges()
-    }
-    
     func addBackButton() {
         let button = UIButton(type: UIButton.ButtonType.system) as UIButton
         
@@ -344,29 +276,70 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
         button.tintColor = viewControllerTheme?.themeColor.primaryDarkColor
-        button.addTarget(self, action: #selector(StoreLocatorViewController.buttonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
         
         self.view.addSubview(button)
     }
-    
     @objc func buttonAction(_ sender:UIButton!)
     {
-        let storyboard = UIStoryboard(name: "DashboardStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "Dashboard")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func addRouteButton() {
+        let button = UIButton(type: UIButton.ButtonType.system) as UIButton
+        
+        button.frame = CGRect(x:view.bounds.width * 13 / 15, y:view.bounds.height / 15, width:50 , height: 50)
+        button.setImage(UIImage(named: "add"), for: UIControl.State.normal)
+        button.backgroundColor = .clear
+        button.layer.cornerRadius = 25
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
+        button.tintColor = viewControllerTheme?.themeColor.primaryDarkColor
+        button.addTarget(self, action: #selector(self.addRouteAction(_:)), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    @objc func addRouteAction(_ sender:UIButton!)
+    {
+        let storyboard = UIStoryboard(name: "CreateRouteStoryboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CreateRoute") as! CreateRouteViewController
+        vc.userInfo = self.user
+        
         self.present(vc, animated: true, completion: nil)
     }
     
+    
+    
+    
+    
+    
+
+    
+    // Adds the page view controller that will become the callout.
+    func addPageViewController() {
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageViewController.isDoubleSided = false
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        pageViewController.view.frame = customItemViewSize
+        pageViewController.view.backgroundColor = viewControllerTheme?.themeColor.primaryDarkColor
+        pageViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = true
+        view.addSubview(pageViewController.view)
+        pageViewController.view.isHidden = true
+    }
+    
     // Determine the feature that was tapped on.
-    func generateItemPages(route: FirebaseRoute) {
+    func generateItemPages(feature: MGLPointFeature) {
         
-        mapView.centerCoordinate = route.startPoint
-        selectedRoute = route
+        mapView.centerCoordinate = feature.coordinate
+        selectedFeature = featuresWithRoute[getKeyForFeature(feature: feature)]
         
         if let themeColor = viewControllerTheme?.themeColor, let iconImage = viewControllerTheme?.defaultMarker {
             let vc = UIViewController()
-            itemView = CustomItemView(route: route, themeColor: themeColor, iconImage: iconImage)
+            itemView = CustomItemView(feature: feature, themeColor: themeColor, iconImage: iconImage)
             itemView.frame = customItemViewSize
-            if let selectedRoute = route.routeCoordinates {
+            if let selectedRoute = selectedFeature?.1 {
                 drawRouteLine(from: selectedRoute)
             }
             vc.view = itemView
@@ -385,18 +358,13 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
     }
     
     // Get the index for a feature in the array of features.
-    func getIndexForRoute(route: FirebaseRoute) -> Int {
+    func getIndexForFeature(feature: MGLPointFeature) -> Int {
         // Filter the features based on a unique attribute. In this case, the location's phone number is used.
-        let routeIndex = routes.firstIndex { (i) -> Bool in
-            i.id == route.id
-        }
-        
-        if let index = routeIndex {
+        let selectFeature = features.filter({ $0.attribute(forKey: uniqueIdentifier) as! String == feature.attribute(forKey: uniqueIdentifier) as! String })
+        if let index = features.index(of: selectFeature.first!) {
             return index
         }
-        
         return 0
-        
     }
     
     // Hide callout when device is in landscape mode.
@@ -407,7 +375,7 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
                 viewController.view.layoutSubviews()
             }
         } else if UIDevice.current.orientation.isLandscape {
-            changeItemColor(route: FirebaseRoute())
+            changeItemColor(feature: MGLPointFeature())
             pageViewController.view.isHidden = true
             mapView.frame = view.bounds
             if let routeLineLayer = mapView.style?.layer(withIdentifier: "route-style") {
@@ -422,36 +390,35 @@ extension StoreLocatorViewController: UIPageViewControllerDataSource, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let view = pendingViewControllers.first?.view as? CustomItemView {
-            selectedRoute = view.selectedRoute
+            selectedFeature = featuresWithRoute[getKeyForFeature(feature: view.selectedFeature)]
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let view = pageViewController.viewControllers?.first?.view as? CustomItemView {
-            let currentRoute = view.selectedRoute
-                self.selectedRoute = currentRoute
-                mapView.centerCoordinate = currentRoute.startPoint
-                drawRouteLine(from: currentRoute.routeCoordinates)
-                changeItemColor(route: currentRoute)
+            if let currentFeature = featuresWithRoute[getKeyForFeature(feature: view.selectedFeature)] {
+                selectedFeature = currentFeature
+                mapView.centerCoordinate = (selectedFeature?.0.coordinate)!
+                drawRouteLine(from: (selectedFeature?.1)!)
+                changeItemColor(feature: (selectedFeature?.0)!)
+            }
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let currentRoute = selectedRoute {
-            let index = routes.firstIndex { (item) -> Bool in
-                item.id == currentRoute.id
-            }
+        if let currentFeature = selectedFeature?.0 {
+            let index = getIndexForFeature(feature: currentFeature)
             let nextVC = UIViewController()
-            var nextRoute = FirebaseRoute()
+            var nextFeature = MGLPointFeature()
             
             if let themeColor = viewControllerTheme?.themeColor, let iconImage = viewControllerTheme?.defaultMarker {
-                if index! - 1 < 0 {
-                    nextRoute = routes.last!
+                if index - 1 < 0 {
+                    nextFeature = features.last!
                 } else {
-                    nextRoute = routes[index!-1]
+                    nextFeature = features[index-1]
                 }
-                nextVC.view = CustomItemView(route: nextRoute, themeColor: themeColor, iconImage: iconImage)
+                nextVC.view = CustomItemView(feature: nextFeature, themeColor: themeColor, iconImage: iconImage)
                 itemView = nextVC.view as! CustomItemView!
             }
             return nextVC
@@ -461,24 +428,22 @@ extension StoreLocatorViewController: UIPageViewControllerDataSource, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let currentRoute = self.selectedRoute {
+        if let currentFeature = selectedFeature?.0 {
             
-            let index = routes.firstIndex { (item) -> Bool in
-                item.id == currentRoute.id
-            }
+            let index = getIndexForFeature(feature: currentFeature)
             let nextVC = UIViewController()
-            var nextRoute = FirebaseRoute()
+            var nextFeature = MGLPointFeature()
             
             
             if let themeColor = viewControllerTheme?.themeColor, let iconImage = viewControllerTheme?.defaultMarker {
-                if index != (routes.count - 1) {
-                    nextRoute = routes[index!+1]
+                if index != (features.count - 1) {
+                    nextFeature = features[index+1]
                 } else {
-                    nextRoute = routes[0]
+                    nextFeature = features[0]
                 }
-                print(nextRoute)
-                selectedRoute = nextRoute
-                nextVC.view = CustomItemView(route: nextRoute, themeColor: themeColor, iconImage: iconImage)
+                print(nextFeature)
+                selectedFeature = featuresWithRoute[getKeyForFeature(feature: nextFeature)]
+                nextVC.view = CustomItemView(feature: nextFeature, themeColor: themeColor, iconImage: iconImage)
                 itemView = nextVC.view as! CustomItemView!
             }
             return nextVC
@@ -486,15 +451,49 @@ extension StoreLocatorViewController: UIPageViewControllerDataSource, UIPageView
         }
         return nil
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // MARK: CustomItemView - The callout for the map.
 // Creates a custom item that displays information about the selected feature.
 class CustomItemView : UIView {
-    var selectedRoute = FirebaseRoute()
+    var selectedFeature = MGLPointFeature()
     
     @IBOutlet var containerView: CustomItemView!
+    @IBOutlet weak var kmLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var lowestPointLabel: UILabel!
+    @IBOutlet weak var highestPointLabel: UILabel!
+    @IBOutlet weak var routeIcon: UIImageView!
+    @IBOutlet weak var routeOwnerPhoto: UIImageView!
+    
+    
     var iconImage = UIImage()
     var routeDistance = ""
     var themeColor : Color!
@@ -503,6 +502,7 @@ class CustomItemView : UIView {
         super.init(frame: CGRect())
         
         Bundle.main.loadNibNamed("CustomItemView", owner: self, options: nil)
+        backgroundColor = .purple
         
         self.frame = bounds
         addSubview(containerView)
@@ -510,24 +510,15 @@ class CustomItemView : UIView {
         containerView.frame = bounds
         containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        //        if containerView.headerView != nil {
-        //            containerView.headerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //            containerView.headerView.translatesAutoresizingMaskIntoConstraints = false
-        //            containerView.headerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height * 0.25)
-        //        }
-        //
-        //        if containerView.iconImageView != nil {
-        //            containerView.iconImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //            containerView.iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        //        }
+
     }
     
-    required convenience init(route: FirebaseRoute, themeColor: Color, iconImage: UIImage) {
+    required convenience init(feature: MGLPointFeature, themeColor: Color, iconImage: UIImage) {
         
         self.init(frame: CGRect())
-        //        self.themeColor = themeColor
+        self.themeColor = themeColor
         self.iconImage = iconImage
-        self.selectedRoute = route
+        self.selectedFeature = feature
         
         createItemView()
         
@@ -544,44 +535,12 @@ class CustomItemView : UIView {
     
     // MARK: Update the attribute keys based on your data's format.
     public func updateLabels() {
-        //        if let name : String = selectedFeature.attribute(forKey: "name") as? String {
-        //            containerView.itemNameLabel.text = name
-        //        }
-        //        if let hours : String = selectedFeature.attribute(forKey: "hours") as? String {
-        //            containerView.itemHourLabel.text = hours
-        //        }
-        //        if let description : String = selectedFeature.attribute(forKey: "description") as? String  {
-        //            containerView.itemDescriptionLabel.text = description
-        //        }
-        //
-        //        if let number : String = selectedFeature.attribute(forKey: "phone") as? String  {
-        //            containerView.itemPhoneNumberLabel.text = number
-        //        }
-    }
+
+      }
     
     func createItemView() {
-        //
-        //        containerView.headerView.backgroundColor = themeColor.primaryDarkColor
-        //
-        //        // Create the icon image for the logo.
-        //        containerView.iconImageView.image = iconImage
-        //
-        //        // Create item name label.
-        //        containerView.itemNameLabel.textColor = .white
-        //
-        //        // Create description label.
-        //        containerView.itemDescriptionLabel.textColor = .white
-        //
-        //        // Create hours open label.
-        //        containerView.itemHourLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        //Create phone number label.
-        //        containerView.itemPhoneNumberLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        // Static labels for attributes.
-        //        containerView.hoursLabel.textColor = themeColor.lowerCardTextColor
-        //
-        //        containerView.phoneNumberLabel.textColor = themeColor.lowerCardTextColor
+        
+
     }
 }
 
@@ -634,3 +593,4 @@ class CustomUserLocationAnnotationView: MGLUserLocationAnnotationView {
         }
     }
 }
+

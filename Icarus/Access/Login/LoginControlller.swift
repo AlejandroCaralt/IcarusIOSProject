@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+import Mapbox
+import MapboxDirections
+import RSLoadingView
 
 class LoginController {
     
@@ -16,6 +20,10 @@ class LoginController {
     var view: LoginViewController
     var fbAuth: Auth
     var alert: GlobalController
+    
+    var ownRoutes: [FirebaseRoute?]! = []
+    
+    var firebaseUser: FirebaseUser!
     
     // MARK: - Init()
     init(loginViewController: LoginViewController) {
@@ -31,7 +39,7 @@ class LoginController {
         guard let eml = view.loginEmailInput.text else { return }
         guard let pwd = view.loginPasswordInput.text else { return }
         let storyboard:UIStoryboard = UIStoryboard(name: "DashboardStoryboard", bundle: nil)
-        let vc:UIViewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
+        let vc =  try storyboard.instantiateViewController(withIdentifier: "Dashboard") as! MainViewController
 
         if eml.count >= 5 && pwd.count >= 6 {
             
@@ -41,6 +49,7 @@ class LoginController {
                     self.alert.showAlertOnVC(targetVC: self.view, title: "Login Fallido", message: "El correo o la contraseñan no coinciden, intentanlo de nuevo.")
                 } else {
                     self.view.stopSpinner()
+                    vc.getUserRouteData()
                     self.view.present(vc, animated: false, completion: nil)
                 }
             })
@@ -48,14 +57,14 @@ class LoginController {
         } else {
             return
         }
-        /* OLD
-        if view.loginEmailInput != nil || view.loginPasswordInput != nil {
-            fb.login(email: view.loginEmailInput!.text ?? "", password: view.loginPasswordInput!.text ?? "", view: self.view)
-        } else {
-            return
-        }
-        */
+
     }
+    
+    
+    
+    
+    
+    
     
     func tryToRecoverPassword() {
         
@@ -82,13 +91,6 @@ class LoginController {
         } else {
             return
         }
-        /* OLD
-        if view.recoverPasswordEmailInput != nil {
-            fb.recoverPassword(email: view.recoverPasswordEmailInput!.text ?? "", view: self.view)
-        } else {
-            return
-        }
-        */
         
     }
     

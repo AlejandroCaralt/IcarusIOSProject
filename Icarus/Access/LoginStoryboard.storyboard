@@ -83,7 +83,7 @@
                                         </constraints>
                                         <state key="normal" image="left-arrow"/>
                                         <connections>
-                                            <segue destination="7Gj-aK-AvR" kind="show" id="PsT-34-5s4"/>
+                                            <action selector="backButton:" destination="jyM-cr-l0b" eventType="touchUpInside" id="ejz-jN-MR7"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wheelsDark" translatesAutoresizingMaskIntoConstraints="NO" id="d3h-Ud-5Q7">
@@ -190,7 +190,7 @@
                                         </constraints>
                                         <state key="normal" image="left-arrow"/>
                                         <connections>
-                                            <segue destination="7Gj-aK-AvR" kind="show" id="ADc-Aa-jzf"/>
+                                            <action selector="backButton:" destination="vRx-7m-MZ6" eventType="touchUpInside" id="vr8-Pj-zfb"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LjN-KS-l4a" userLabel="FormContainer">
@@ -468,7 +468,7 @@
                                                     <color key="titleColor" red="0.16074963731367176" green="0.0015531756475622993" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="vRx-7m-MZ6" kind="show" id="yrA-Gc-w3g"/>
+                                                    <segue destination="vRx-7m-MZ6" kind="showDetail" id="yrA-Gc-w3g"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿No tienes cuenta aún?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yg-n5-NNU">
@@ -781,7 +781,7 @@
                                         </constraints>
                                         <state key="normal" image="left-arrow"/>
                                         <connections>
-                                            <segue destination="jyM-cr-l0b" kind="show" id="WLl-gv-1Dp"/>
+                                            <action selector="backButton:" destination="Sxi-ge-VFW" eventType="touchUpInside" id="uBh-S1-b4c"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wheelsDark" translatesAutoresizingMaskIntoConstraints="NO" id="igJ-VJ-noY">
@@ -927,7 +927,7 @@
                                         </constraints>
                                         <state key="normal" image="left-arrow"/>
                                         <connections>
-                                            <segue destination="Sxi-ge-VFW" kind="show" id="j5T-6t-SBg"/>
+                                            <action selector="backButton:" destination="Q4a-yY-jsT" eventType="touchUpInside" id="EJ6-es-ZC6"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wheelsDark" translatesAutoresizingMaskIntoConstraints="NO" id="xIe-0b-wlG">
@@ -1269,8 +1269,4 @@ AAAAAAAAAAAALHU
         <image name="wheels" width="512" height="512"/>
         <image name="wheelsDark" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="PsT-34-5s4"/>
-        <segue reference="Md0-hL-pnl"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -36,6 +36,9 @@ class GlobalController {
     
 }
 
+
+// MARK: Firebase User Object
+
 class FirebaseUser {
     var name: String!
     var city: String!
@@ -56,8 +59,11 @@ class FirebaseUser {
    
 }
 
+
+// MARK: Firebase Route Object
+
 struct FirebaseRoute: Codable {
-    var routeCoordinates: [CLLocationCoordinate2D]!
+    var routeCoordinates: [CLLocationCoordinate2D]! = []
     var km: Double!
     var owner: String!
     var highestPoint: Double!
@@ -70,8 +76,11 @@ struct FirebaseRoute: Codable {
     
     init() { }
     
-    init(routeCoordinates: [CLLocationCoordinate2D], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String, id: String) {
-        self.routeCoordinates = routeCoordinates
+    init(routeCoordinates: [GeoPoint], km: Double, owner: String, highestPoint: Double, lowestPoint: Double, time: Double, typeRoute: String, name: String, id: String) {
+        for n in routeCoordinates {
+            let coordinate = CLLocationCoordinate2D(latitude: n.latitude, longitude: n.longitude)
+            self.routeCoordinates.append(coordinate)
+        }
         self.km = km
         self.owner = owner
         self.highestPoint = highestPoint
@@ -86,20 +95,51 @@ struct FirebaseRoute: Codable {
     
 }
 
-class RoutePoint: Codable {
+
+// MARK: Features Object
+// Structures for encoding a map to create features points
+
+struct RoutePoint: Codable {
     var type: String!
     var geometry: geometry!
     var properties: properties!
+    
+    init(geometry: geometry, properties: properties) {
+        self.type = "Feature"
+        self.geometry = geometry
+        self.properties = properties
+        
+    }
+    
+    init() {}
 }
 
 struct properties: Codable {
     var name: String!
     var featureclass: String!
+    var index: Int!
+    
+    init(name: String, index: Int) {
+        self.name = name
+        self.featureclass = "Port"
+        self.index = index
+    }
+    
+    init() {}
+    
 }
 
 struct geometry: Codable {
     var type: String!
     var coordinates: [Double]!
+    
+    init(coordinates: [Double]) {
+        self.coordinates = coordinates
+        self.type = "Point"
+    }
+    
+    init() {}
+    
 }
 
 

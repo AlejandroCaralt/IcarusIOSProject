@@ -1,4 +1,6 @@
 import Mapbox
+import Firebase
+import FirebaseFirestore
 
 class RoutesMapViewController: UIViewController, MGLMapViewDelegate {
     
@@ -67,13 +69,82 @@ class RoutesMapViewController: UIViewController, MGLMapViewDelegate {
         routes.geometry = g
         routes.properties = p
         routes.type = "Feature"
+        
+        let db = Firestore.firestore()
+         //Update the user data
+
+        let ref1 = db.collection("routes").document()
+        let ref2 = db.collection("routes").document()
+        let ref3 = db.collection("routes").document()
+
+        ref1.setData([
+            "routesCoordinates" : [
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.42405 , longitude: 36.72250),
+                GeoPoint(latitude: -4.42406 , longitude: 36.72251),
+                GeoPoint(latitude: -4.42407 , longitude: 36.72252),
+                GeoPoint(latitude: -4.42408 , longitude: 36.72253),
+                GeoPoint(latitude: -4.42409 , longitude: 36.72254),
+                GeoPoint(latitude: -4.42410 , longitude: 36.72255),
+            ],
+
+            "km" : 12,
+            "owner" : "6R5VWT1NwzPyi9V38SX0NtvnlHE2",
+            "highestPoint" : 10,
+            "lowestPoint" : 9,
+            "time" : 6,
+            "typeRoute" : "field",
+            "name" : "Pero bueno willy"
+        ])
+        ref2.setData([
+            "routesCoordinates" : [
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.42405 , longitude: 36.72250),
+                GeoPoint(latitude: -4.42406 , longitude: 36.72251),
+                GeoPoint(latitude: -4.42407 , longitude: 36.72252),
+                GeoPoint(latitude: -4.42408 , longitude: 36.72253),
+                GeoPoint(latitude: -4.42409 , longitude: 36.72254),
+                GeoPoint(latitude: -4.42410 , longitude: 36.72255),
+            ],
+            
+            "km" : 12,
+            "owner" : "6R5VWT1NwzPyi9V38SX0NtvnlHE2",
+            "highestPoint" : 10,
+            "lowestPoint" : 9,
+            "time" : 6,
+            "typeRoute" : "field",
+            "name" : "Ay dios mio"
+            ])
+        ref3.setData([
+            "routesCoordinates" : [
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.4240461 , longitude: 36.7225193),
+                GeoPoint(latitude: -4.42405 , longitude: 36.72250),
+                GeoPoint(latitude: -4.42406 , longitude: 36.72251),
+                GeoPoint(latitude: -4.42407 , longitude: 36.72252),
+                GeoPoint(latitude: -4.42408 , longitude: 36.72253),
+                GeoPoint(latitude: -4.42409 , longitude: 36.72254),
+                GeoPoint(latitude: -4.42410 , longitude: 36.72255),
+            ],
+            
+            "km" : 12,
+            "owner" : "6R5VWT1NwzPyi9V38SX0NtvnlHE2",
+            "highestPoint" : 10,
+            "lowestPoint" : 9,
+            "time" : 6,
+            "typeRoute" : "field",
+            "name" : "Achanta tonto"
+            ])
 
         let jsonData = try! JSONEncoder().encode(routes)
         let data: Data = jsonData
-        let shape: MGLShape = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue)
-        let jsonString = String(data: jsonData, encoding: .utf8)!
+        let shape = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue)
         
-        let url = URL(fileURLWithPath: Bundle.main.path(forResource: "ports", ofType: "geojson")!)
+//        let jsonString = String(data: jsonData, encoding: .utf8)!
+//
+//        let url = URL(fileURLWithPath: Bundle.main.path(forResource: "ports", ofType: "geojson")!)
         let source = MGLShapeSource(identifier: "clusteredPorts",
                                     shape: shape,
                                     options: [.clustered: true, .clusterRadius: icon.size.width])

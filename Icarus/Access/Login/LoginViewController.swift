@@ -37,7 +37,10 @@ class LoginViewController: UIViewController {
         loginController = LoginController.init(loginViewController: self)
     }
     
-
+    @IBAction func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Actions
     //  - Login actions
     @IBAction func loginLoginButtonTapped(_ sender: UIButton) {

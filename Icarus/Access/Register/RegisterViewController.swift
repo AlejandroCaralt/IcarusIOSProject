@@ -46,4 +46,7 @@ class RegisterViewController: UIViewController {
         registerController.tryToRegister()
     }
     
+    @IBAction func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

@@ -115,39 +115,41 @@ class ProfileViewController: UIViewController {
 
     @IBAction func save(_ sender: Any) {
         
-        self.uploadImage(self.profileImage.image!) { url in
-            self.startSpinner()
-            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-            changeRequest!.photoURL = url
-            changeRequest!.commitChanges { error in
-                if let _ = error {
-                    
-                    self.stopSpinner()
-                    print("Try Again")
-                } else {
-                    
-                    self.stopSpinner()
-                    print("Photo Updated")
+        DispatchQueue.main.async {
+            self.uploadImage(self.profileImage.image!) { url in
+                self.startSpinner()
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest!.photoURL = url
+                changeRequest!.commitChanges { error in
+                    if let _ = error {
+                        
+                        self.stopSpinner()
+                        print("Try Again")
+                    } else {
+                        
+                        self.stopSpinner()
+                        print("Photo Updated")
+                    }
                 }
             }
-        }
-        let db = Firestore.firestore()
-        let userID = String(Auth.auth().currentUser!.uid)
-        
-        // Update the user data
-        
-        let ref = db.collection("users").document(userID)
-        ref.updateData([
+            let db = Firestore.firestore()
+            let userID = String(Auth.auth().currentUser!.uid)
             
-            "name" : self.nameInput.text ?? user.name,
-            "city" : self.cityInput.text ?? user.city,
-            "sentence" : self.sentenceInput.text ?? user.sentence
+            // Update the user data
             
-        ]) { (error) in
-            if error != nil {
-                self.showToast(message: "Fallo al guardar")
-            } else {
-                self.showToast(message: "Guardado")
+            let ref = db.collection("users").document(userID)
+            ref.updateData([
+                
+                "name" : self.nameInput.text ?? self.user.name,
+                "city" : self.cityInput.text ?? self.user.city,
+                "sentence" : self.sentenceInput.text ?? self.user.sentence
+                
+            ]) { (error) in
+                if error != nil {
+                    self.showToast(message: "Fallo al guardar")
+                } else {
+                    self.showToast(message: "Guardado")
+                }
             }
         }
 
@@ -157,6 +159,9 @@ class ProfileViewController: UIViewController {
         showAlert()
     }
     
+    @IBAction func backButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func showToast(message : String) {
         
