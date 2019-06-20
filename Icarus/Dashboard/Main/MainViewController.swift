@@ -170,6 +170,39 @@ class MainViewController: UIViewController {
                 self.tableViewInstantiate(routes: self.ownRoutes as! [FirebaseRoute])
                 
             }
+        }
+            
+            DispatchQueue.main.async {
+                db.collection("routes").getDocuments() { (snapshot, error) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                        return
+                    }
+                    var index = 0
+                    
+                    for document in snapshot!.documents {
+                        
+                        index += 1
+                        let highestPoint = document["highestPoint"] as! Double
+                        let km = document["km"] as! Double
+                        let lowestPoint = document["lowestPoint"] as! Double
+                        let owner = document["owner"] as! String
+                        let routeCoordinates = document["routesCoordinates"] as! [GeoPoint]
+                        let time = document["time"] as! Double
+                        let typeRoute = document["typeRoute"] as! String
+                        let name = document["name"] as! String
+                        let id = document.documentID
+                        
+                        let route: FirebaseRoute = FirebaseRoute(routeCoordinates: routeCoordinates, km: km, owner: owner, highestPoint: highestPoint, lowestPoint: lowestPoint, time: time, typeRoute: typeRoute, name: name, id: id)
+                        
+                        self.allRoutes.append(route)
+                        
+                        
+                    }
+                    // Conditional for "Tus rutas" label when user doestn have one
+                    
+                    
+                }
             
         }
         
@@ -196,7 +229,7 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "MapStoryboard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "StoreLocatorMap") as! StoreLocatorViewController
         vc.allRoutes = self.allRoutes
-        vc.allRouteFeatures = self.allRouteFeatures
+        vc.allRouteFeatures = objectToGeojson(routes: self.allRoutes)
         vc.user = self.firebaseUser
         self.present(vc, animated: true, completion: nil)
     }
@@ -208,9 +241,10 @@ class MainViewController: UIViewController {
     }
     
     // MARK: Instantiate GeoJson objects
-    func objectToGeojson() {
+    func objectToGeojson(routes: [FirebaseRoute]) -> [MGLShape] {
         var index = 0
-        for n in allRoutes {
+        var featurePoints: [MGLShape] = []
+        for n in routes {
             
             let coord = [n.startPoint.latitude, n.startPoint.longitude]
             let nam = n.name
@@ -221,11 +255,12 @@ class MainViewController: UIViewController {
             let data: Data = jsonData
             let shape = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue)
             
-            self.allRouteFeatures.append(shape)
+            featurePoints.append(shape)
             
             index += 1
             
         }
+        return featurePoints
     }
     
     

@@ -89,7 +89,7 @@ class StoreLocatorViewController: UIViewController, MGLMapViewDelegate, CLLocati
         guard let style = mapView.style else { return }
         
         let feature = try! MGLShape(data: data, encoding: String.Encoding.utf8.rawValue) as! MGLShapeCollectionFeature
-        
+        print("*****************\( self.allRouteFeatures)")
         let source = MGLShapeSource(identifier: "store-locations", shapes: self.allRouteFeatures, options: nil)
         style.addSource(source)
         
